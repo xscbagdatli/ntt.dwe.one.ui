@@ -1,0 +1,19 @@
+.content_container {
+    @apply w-full
+}
+
+.dashboard_container {
+    @apply flex items-center justify-center w-auto
+}
+
+.requests_container {
+    @apply flex items-center
+}
+
+.request_number {
+    @apply font-normal text-[100px] text-[#B42318]
+}
+
+.request_text {
+    @apply w-[110px] h-[66px] text-left font-normal text-[20px] text-[#626365]
+}

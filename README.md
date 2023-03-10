@@ -1,1 +1,3 @@
-# ntt.dwe.one.ui
+----- One Heart App -----
+
+NTT Data Deprem Dayanışma Platformu
