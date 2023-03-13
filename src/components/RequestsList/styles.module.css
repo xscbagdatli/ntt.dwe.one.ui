@@ -1,0 +1,41 @@
+.request_list_container {
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+}
+
+.request_list_title_container {
+    @apply flex items-baseline justify-between mb-[11px] font-medium text-[30px] leading-[38px] text-[#626365]
+}
+
+.request_title {
+    @apply font-medium text-[30px] leading-[38px] text-[#626365]
+}
+
+.lang_button_eng {
+    @apply w-8 min-w-0 lowercase text-[#9DA6BA]
+}
+
+.lang_button_tr {
+    @apply w-8 min-w-0 font-bold lowercase text-[#9DA6BA]
+}
+
+.header_description {
+    @apply font-medium text-[14px] leading-[25px] text-[#9C9191]
+}
+
+.request_list_actions_container {
+    @apply flex items-center justify-end p-[12px] border-2 mb-6 mt-11
+}
+
+.request_list_excel_container {
+    @apply flex justify-center w-[56px] h-[44px] border-2
+}
+
+.request_list_filters_container {
+    @apply flex justify-center w-[183px] h-[44px] border-2 ml-3
+}
+
+.filter_button {
+    @apply capitalize font-bold text-[#344054]
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import './Navbar.css';
+// import './Navbar.css';
+import NavbarCss from './styles.module.css';
 import { BsCheck2Square, BsPlusLg, BsListUl } from "react-icons/bs"
 import { CgHomeAlt } from "react-icons/cg"
 import { BiHelpCircle } from "react-icons/bi"
@@ -7,6 +8,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Box } from '@mui/system';
 import { Avatar, Divider, Link, Stack, Typography } from '@mui/material';
+import { Link as RouteLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar({
     value,
@@ -14,6 +17,7 @@ export default function Navbar({
     component,
     setComponent
 }) {
+    const { t } = useTranslation()
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -37,23 +41,23 @@ export default function Navbar({
 
     const menu = [
         {
-            title: "Anasayfa",
+            title: "Homepage",
             path: "/",
             icon: <CgHomeAlt />
         },
         {
-            title: "Talep Oluşturma",
+            title: "CreateRequest",
             path: "/request-create",
             icon: <BsPlusLg />
         },
         {
-            title: "Talep Listesi",
-            path: "/request-list",
+            title: "RequestList",
+            path: "/requests-list",
             icon: <BsListUl />
         },
         {
-            title: "Karşıladığım Talepler",
-            path: "/receive-request",
+            title: "ProvidedRequestsByMe",
+            path: "/my-requests",
             icon: <BsCheck2Square />
         }
     ];
@@ -103,10 +107,15 @@ export default function Navbar({
         >
             <Box>
                 <Box display="flex" alignItems="center" justifyContent="center" paddingY="33px"> <img src='./one-heart-logo.png' alt='logo' /></Box>
-                <Tabs orientation='vertical' value={value} onChange={handleChange}>
+                <Tabs orientation='vertical' value={value} onChange={handleChange}
+                    sx={{
+                        '& .css-10d9dml-MuiTabs-indicator': {
+                            width: "0px !important"
+                        }
+                    }}>
                     {
                         menu?.map((item, index) => (
-                            <Tab className='navbar-tab' style={navbarTabStyle(index)} key={index} icon={item.icon} iconPosition="start" label={item.title} />
+                            <Tab className='navbar-tab' style={navbarTabStyle(index)} key={index} icon={item.icon} iconPosition="start" label={t(item.title)} to={item.path} component={RouteLink} />
                         ))
                     }
                 </Tabs>

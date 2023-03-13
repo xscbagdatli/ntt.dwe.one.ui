@@ -1,8 +1,10 @@
-import { Box, Typography, Container } from '@mui/material';
-import Dashboard from '../Dashboard/Dashboard';
-import HeaderText from '../HeaderText/HeaderText';
-
+import React from 'react';
 import HomepageCss from './styles.module.css';
+
+// Components
+import Dashboard from '../../components/Dashboard/Dashboard';
+import HeaderText from '../../components/HeaderText/HeaderText';
+
 
 function Homepage() {
 
