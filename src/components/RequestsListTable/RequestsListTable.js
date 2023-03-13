@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button, { Box, Chip, LinearProgress, Typography } from '@mui/material';
+import { Box, Chip, LinearProgress, TableFooter, TablePagination, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -35,11 +36,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function createData(
   requestNo,
   expectedDeliveryDate,
-  fat,
+  title,
   statusId,
   progress,
 ) {
-  return { requestNo, expectedDeliveryDate, fat, statusId, progress };
+  return { requestNo, expectedDeliveryDate, title, statusId, progress };
 }
 
 const rows = [
@@ -80,9 +81,16 @@ function LinearProgressWithLabel(props) {
 }
 
 export default function RequestsListTable() {
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(5)
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 700, minHeight: 440 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Talep No</StyledTableCell>
@@ -94,13 +102,16 @@ export default function RequestsListTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
             <StyledTableRow key={row.requestNo}>
               <StyledTableCell component="th" scope="row">
                 {row.requestNo}
               </StyledTableCell>
               <StyledTableCell align="right">{row.expectedDeliveryDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
+              <StyledTableCell align="right">{row.title}</StyledTableCell>
               <StyledTableCell align="right">{<Chip label={row.statusId === 1 ? "Tamamlandı" : row.statusId === 2 ? "Paylaşımda" : "Açık"} color={row.statusId === 1 ? "success" : row.statusId === 2 ? "warning" : "info"} />}</StyledTableCell>
               <StyledTableCell align="right">{<LinearProgressWithLabel value={row.progress} />}</StyledTableCell>
               <StyledTableCell align="right">
@@ -116,8 +127,27 @@ export default function RequestsListTable() {
               </StyledTableCell>
             </StyledTableRow>
           ))}
+          {/* 
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )} */}
         </TableBody>
+        <TableFooter>
+          <TablePagination
+            rowsPerPageOptions={[]}
+            colSpan={3}
+            count={rows.length}
+            rowsPerPage={5}
+            page={page}
+            onPageChange={handleChangePage}
+          // onRowsPerPageChange={handleChangeRowsPerPage}
+          // ActionsComponent={TablePaginationActions}
+          />
+
+        </TableFooter>
       </Table>
-    </TableContainer>
+    </TableContainer >
   );
 }

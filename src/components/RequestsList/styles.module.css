@@ -1,7 +1,5 @@
 .request_list_container {
-    display        : flex;
-    flex-direction : column;
-    justify-content: center;
+    @apply flex flex-col justify-center
 }
 
 .request_list_title_container {
@@ -25,7 +23,11 @@
 }
 
 .request_list_actions_container {
-    @apply flex items-center justify-end p-[12px] border-2 mb-6 mt-11
+    @apply flex items-center justify-between p-[12px] border-2 mb-6 mt-11
+}
+
+.request_list_actions_right_container {
+    @apply flex
 }
 
 .request_list_excel_container {
