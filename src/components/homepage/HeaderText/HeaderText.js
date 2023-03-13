@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderTextCss from "./styles.module.css"
-import HomeLogo from '../../assets/images/home-logo.png';
+import HomeLogo from '../../../assets/images/home-logo.png';
 import { useTranslation } from 'react-i18next';
 
 function HeaderText() {

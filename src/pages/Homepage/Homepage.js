@@ -2,8 +2,8 @@ import React from 'react';
 import HomepageCss from './styles.module.css';
 
 // Components
-import Dashboard from '../../components/Dashboard/Dashboard';
-import HeaderText from '../../components/HeaderText/HeaderText';
+import Dashboard from '../../components/homepage/Dashboard/Dashboard';
+import HeaderText from '../../components/homepage/HeaderText/HeaderText';
 
 
 function Homepage() {

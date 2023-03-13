@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import './Navbar.css';
 import NavbarCss from './styles.module.css';
 import { BsCheck2Square, BsPlusLg, BsListUl } from "react-icons/bs"
 import { CgHomeAlt } from "react-icons/cg"
@@ -47,11 +46,11 @@ export default function Navbar({
         },
         {
             title: "CreateRequest",
-            path: "/request-create",
+            path: "/create-request",
             icon: <BsPlusLg />
         },
         {
-            title: "RequestList",
+            title: "RequestsList",
             path: "/requests-list",
             icon: <BsListUl />
         },
@@ -68,7 +67,7 @@ export default function Navbar({
             textTransform: "capitalize",
             borderRadius: "6px",
             minHeight: "50px",
-            background: index === value && "#B42318",
+            background: index === value && "#F43443",
             color: index === value ? "#FFF" : "unset"
         }
     }
@@ -106,7 +105,7 @@ export default function Navbar({
             width="21%"
         >
             <Box>
-                <Box display="flex" alignItems="center" justifyContent="center" paddingY="33px"> <img src='./one-heart-logo.png' alt='logo' /></Box>
+                <Box display="flex" alignItems="center" justifyContent="center" paddingBottom="70px"> <img src='./one-heart-logo.png' alt='logo' /></Box>
                 <Tabs orientation='vertical' value={value} onChange={handleChange}
                     sx={{
                         '& .css-10d9dml-MuiTabs-indicator': {
@@ -131,7 +130,7 @@ export default function Navbar({
                         <BiHelpCircle />
                     </Link>
                     <Link href="#" underline="none" color="#667085">
-                        Yardım
+                        {t("Help")}
                     </Link>
                 </Stack>
                 <Divider />

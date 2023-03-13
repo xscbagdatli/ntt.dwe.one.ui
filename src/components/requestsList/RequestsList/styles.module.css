@@ -10,14 +10,6 @@
     @apply font-medium text-[30px] leading-[38px] text-[#626365]
 }
 
-.lang_button_eng {
-    @apply w-8 min-w-0 lowercase text-[#9DA6BA]
-}
-
-.lang_button_tr {
-    @apply w-8 min-w-0 font-bold lowercase text-[#9DA6BA]
-}
-
 .header_description {
     @apply font-medium text-[14px] leading-[25px] text-[#9C9191]
 }

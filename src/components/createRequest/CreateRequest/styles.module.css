@@ -1,0 +1,31 @@
+.create_request_container {
+    @apply flex flex-col justify-center
+}
+
+.create_request_header_container {
+    @apply bg-[#F43443] p-[7px] text-[#FFFFFF] text-[14px] pl-3
+}
+
+.create_request_header_title {
+    @apply font-[500] mb-2
+}
+
+.create_request_header_name {
+    @apply font-[300]
+}
+
+.create_request_info_container {
+    @apply mb-[17px] mt-[13px] border-[1px]
+}
+
+/* .create_request_requester_info_container {
+    @apply border-2 mt-11
+} */
+
+.create_request_requester_info_header_container {
+    @apply bg-[#FEEBEC] p-[15px] text-[#F43443] text-[16px] font-[700]
+}
+
+.create_request_actions_container {
+    @apply p-[24px] pt-[unset] flex items-center justify-between
+}
