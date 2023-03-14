@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import AppCss from './styles.module.css';
 // Route Import
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 // MUI Components
 import Layout from './components/Layout/Layout';
 import Homepage from './pages/Homepage/Homepage';
@@ -35,6 +35,9 @@ const handleLanguage = (e) => {
 }
 
 function App() {
+
+  let location = useLocation();
+
   return (
     <Suspense fallback="Loading">
       <div className="App">
@@ -55,10 +58,10 @@ function App() {
           </Box>
           <Box display="flex"
             sx={{
-              height: "750px"
+              // height: "750px"
             }} >
             <Layout />
-            <Box margin="50px 0 50px 20px">
+            <Box padding={location?.pathname !== "/create-request" && "50px 0 0px 20px"} bgcolor="#F5F5F5">
               <Routes>
                 <Route path="/" element={<Homepage />}></Route>
                 <Route path="home" element={<RequestsListPage />}></Route>

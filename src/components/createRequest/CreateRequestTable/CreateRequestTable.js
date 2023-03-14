@@ -13,6 +13,7 @@ import {
   tableHeadCategories
 } from "../create-request-data.js"
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,44 +38,44 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  requestNo,
-  expectedDeliveryDate,
-  title,
-  statusId,
-  progress,
-  a,
-  b,
-  c,
-  d,
-  e,
-  f,
-  g,
-) {
-  return { requestNo, expectedDeliveryDate, title, statusId, progress, a, b, c, d, e, f, g };
-}
+// function createData(
+//   requestNo,
+//   expectedDeliveryDate,
+//   title,
+//   statusId,
+//   progress,
+//   a,
+//   b,
+//   c,
+//   d,
+//   e,
+//   f,
+//   g,
+// ) {
+//   return { requestNo, expectedDeliveryDate, title, statusId, progress, a, b, c, d, e, f, g };
+// }
 
-const rows = [
-  createData('#7353967', "07/10/2023", "Elektronik", 1, 50, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 25, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 15, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 1, 35, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-  createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-];
+// const rows = [
+//   createData('#7353967', "07/10/2023", "Elektronik", 1, 50, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 25, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 15, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 1, 35, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
+//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
+// ];
 
 function LinearProgressWithLabel(props) {
   return (
@@ -93,6 +94,8 @@ function LinearProgressWithLabel(props) {
 
 export default function CreateRequestTable() {
   const { t } = useTranslation()
+  const createProductObjectBody = useSelector((state) => state.createRequest.createProductObjectBody)
+
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(2)
 
@@ -101,7 +104,7 @@ export default function CreateRequestTable() {
   };
 
   return (
-    <TableContainer component={Paper} sx={{ maxWidth: '1024px' }}>
+    <TableContainer component={Paper} >
       <Table sx={{ maxWidth: '100%', minHeight: 440, padding: "15px" }} stickyHeader>
         <TableHead>
           <TableRow>
@@ -115,49 +118,23 @@ export default function CreateRequestTable() {
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <StyledTableRow key={row.id}>
-              <StyledTableCell component="th" scope="row">
-                {row.requestNo}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.expectedDeliveryDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.title}</StyledTableCell>
-              <StyledTableCell align="right">{<Chip label={row.statusId === 1 ? "Tamamlandı" : row.statusId === 2 ? "Paylaşımda" : "Açık"} color={row.statusId === 1 ? "success" : row.statusId === 2 ? "warning" : "info"} />}</StyledTableCell>
-              <StyledTableCell align="right">{<LinearProgressWithLabel value={row.progress} />}</StyledTableCell>
-              <StyledTableCell align="right">
-                <div style={{
-                  display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#E1474A", borderRadius: "8px", width: "115px",
-                  height: "32px",
-                  cursor: "pointer",
-                  color: "#FFFFFF"
-                }}>
-                  Detaya Git
-                  <ArrowForwardIcon />
-                </div>
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.a}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.b}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.c}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.d}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.e}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.f}
-              </StyledTableCell>
-              <StyledTableCell component="th" scope="row">
-                {row.g}
-              </StyledTableCell>
+            ? createProductObjectBody?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : createProductObjectBody
+          ).map((row, i) => (
+            <StyledTableRow key={i}>
+              <StyledTableCell align="right">{row.productname}</StyledTableCell>
+              <StyledTableCell align="right">{row?.productCategory}</StyledTableCell>
+              <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell>
+              <StyledTableCell align="right">{row.quantity}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.measureUnit)}</StyledTableCell>
+              <StyledTableCell align="right">{row.price}</StyledTableCell>
+              <StyledTableCell align="right">{row.priceUnit}</StyledTableCell>
+              <StyledTableCell align="right">{row.purchaseType}</StyledTableCell>
+              <StyledTableCell align="right">{row.providingType}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.deliveryType)}</StyledTableCell>
+              <StyledTableCell align="right">{row.deliveryCompany}</StyledTableCell>
+              <StyledTableCell align="right">{(row.isSpecialProduct ? t("Yes") : t("No"))}</StyledTableCell>
+              <StyledTableCell align="right">{row.productUrl}</StyledTableCell>
             </StyledTableRow>
           ))}
           {/* 
@@ -171,7 +148,7 @@ export default function CreateRequestTable() {
           <TablePagination
             rowsPerPageOptions={[]}
             colSpan={3}
-            count={rows.length}
+            count={createProductObjectBody?.length}
             rowsPerPage={2}
             page={page}
             onPageChange={handleChangePage}

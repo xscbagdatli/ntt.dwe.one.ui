@@ -28,10 +28,15 @@ export const translationsEn =
     SpecialProduct: "Special Product",
     AddProduct: "Add Product",
     PleaseFill: "Please fill.",
-
     ProductName: "Product Name",
     ProductSector: "Product Sector",
     ProductQuantity: "Product Quantity",
     ProductPrice: "Product Price",
     ProviderCompany: "Provider Company",
+    Yes: "Yes",
+    No: "No",
+    ResponsibleName: "Responsible Name:",
+    PC: "Piece",
+    DIRECT: "Direct",
+    SHIPMENT: "Shipment",
 }

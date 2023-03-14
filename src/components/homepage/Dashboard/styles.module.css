@@ -3,17 +3,17 @@
 }
 
 .dashboard_container {
-    @apply flex items-center justify-center w-auto
+    @apply flex items-center justify-around w-auto
 }
 
 .requests_container {
-    @apply flex items-center
+    @apply flex items-center bg-[#FFFFFF] my-[55px] px-[30px]
 }
 
 .request_number {
-    @apply font-normal text-[100px] text-[#B42318]
+    @apply w-[] font-normal text-[100px] text-[#B42318]
 }
 
 .request_text {
-    @apply w-[110px] h-[66px] text-left font-normal text-[20px] text-[#626365]
+    @apply w-[110px] h-[66px] text-center font-normal text-[20px] text-[#626365] mt-[10px]
 }

@@ -28,10 +28,15 @@ export const translationsTr =
     SpecialProduct: "Özel Ürün",
     AddProduct: "Ürün Ekle",
     PleaseFill: "Lütfen doldurunuz.",
-
     ProductName: "Ürün İsmi",
     ProductSector: "Ürün Sektörü",
     ProductQuantity: "Ürün Miktarı",
     ProductPrice: "Ürün Fiyatı",
     ProviderCompany: "Tedarik Firması",
+    Yes: "Evet",
+    No: "Hayır",
+    ResponsibleName: "Sorumlu Adı:",
+    PC: "Adet",
+    DIRECT: "Elden Teslim",
+    SHIPMENT: "Kargo",
 }
