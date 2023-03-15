@@ -2,6 +2,7 @@ export const translationsTr =
 {
     HeaderTitle: "Kalbimiz Deprem Bölgesinde",
     Help: "Yardım",
+    Filters: "Filtreler",
     RequestsList: "Talep Listesi",
     Homepage: "Anasayfa",
     CreateRequest: "Talep Oluştur",
@@ -39,4 +40,10 @@ export const translationsTr =
     PC: "Adet",
     DIRECT: "Elden Teslim",
     SHIPMENT: "Kargo",
+    GoToDetail: "Detaya Git",
+    Search: "Ara",
+    RequestNo: "Talep No",
+    RequestTitle: "Talep Başlığı",
+    Status: "Durum",
+    ProvidingRatio: "Karşılanma Oranı",
 }

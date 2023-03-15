@@ -1,15 +1,15 @@
 .header_text_container {
-    @apply flex justify-center;
+    @apply flex justify-center items-center;
 }
 
 .header_title {
-    @apply font-medium text-[30px] leading-[38px] text-[#626365] mb-[50px]
+    @apply font-bold text-[38px] leading-[38px] mb-[50px]
 }
 
 .header_description {
-    @apply font-normal text-[14px] leading-[25px] text-[#9C9191]
+    @apply font-normal text-[14px] leading-[25px]
 }
 
 .header_text_logo {
-    @apply w-[371px] h-[371px]
+    @apply w-[300px] h-[300px]
 }

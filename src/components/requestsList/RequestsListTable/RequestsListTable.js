@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box, Chip, LinearProgress, TableFooter, TablePagination, Typography } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useTranslation } from 'react-i18next';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -81,6 +82,8 @@ function LinearProgressWithLabel(props) {
 }
 
 export default function RequestsListTable() {
+  const { t } = useTranslation()
+
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
@@ -93,11 +96,11 @@ export default function RequestsListTable() {
       <Table sx={{ minWidth: 700, minHeight: 440 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Talep No</StyledTableCell>
-            <StyledTableCell align="right">Beklenen Teslim Tarihi</StyledTableCell>
-            <StyledTableCell align="right">Talep Başlığı</StyledTableCell>
-            <StyledTableCell align="right">Durum</StyledTableCell>
-            <StyledTableCell align="right">Karşılanma Oranı</StyledTableCell>
+            <StyledTableCell>{t("RequestNo")}</StyledTableCell>
+            <StyledTableCell align="right">{t("ExpectedDeliveryDate")}</StyledTableCell>
+            <StyledTableCell align="right">{t("RequestTitle")}</StyledTableCell>
+            <StyledTableCell align="right">{t("Status")}</StyledTableCell>
+            <StyledTableCell align="right">{t("ProvidingRatio")}</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
@@ -121,7 +124,7 @@ export default function RequestsListTable() {
                   cursor: "pointer",
                   color: "#FFFFFF"
                 }}>
-                  Detaya Git
+                  {t("GoToDetail")}
                   <ArrowForwardIcon />
                 </div>
               </StyledTableCell>

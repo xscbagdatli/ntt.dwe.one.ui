@@ -1,35 +1,39 @@
-.request_list_container {
-    @apply flex flex-col justify-center
+.requests_list_container {
+    @apply flex flex-col justify-center p-[10px]
 }
 
-.request_list_title_container {
-    @apply flex items-baseline justify-between mb-[11px] font-medium text-[30px] leading-[38px] text-[#626365]
+.requests_list_header_container {
+    @apply flex flex-col items-baseline justify-between
 }
 
-.request_title {
-    @apply font-medium text-[30px] leading-[38px] text-[#626365]
+.requests_list_header_title {
+    @apply my-[11px] font-bold text-[30px] leading-[38px]
 }
 
-.header_description {
-    @apply font-medium text-[14px] leading-[25px] text-[#9C9191]
+.requests_list_header_description {
+    @apply text-[14px] leading-[25px]
 }
 
-.request_list_actions_container {
+.requests_list_actions_container {
     @apply flex items-center justify-between p-[12px] border-2 mb-6 mt-11
 }
 
-.request_list_actions_right_container {
+.requests_list_actions_right_container {
     @apply flex
 }
 
-.request_list_excel_container {
-    @apply flex justify-center w-[56px] h-[44px] border-2
+.requests_list_excel_container {
+    @apply flex justify-center h-[44px] border-2 bg-[#FFFFFF]
 }
 
-.request_list_filters_container {
-    @apply flex justify-center w-[183px] h-[44px] border-2 ml-3
+.requests_list_excel_button {
+    @apply w-[56px] rounded-none
 }
 
-.filter_button {
-    @apply capitalize font-bold text-[#344054]
+.requests_list_filter_container {
+    @apply flex justify-center h-[44px] border-2 ml-3 bg-[#FFFFFF]
+}
+
+.requests_list_filter_button {
+    @apply w-[183px] capitalize font-bold text-[#344054]
 }

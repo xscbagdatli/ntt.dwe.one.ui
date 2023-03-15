@@ -2,6 +2,7 @@ export const translationsEn =
 {
     HeaderTitle: "Our Heart Together With Earthquake Areas",
     Help: "Help",
+    Filters: "Filters",
     RequestsList: "Requests List",
     Homepage: "Homepage",
     CreateRequest: "Create Request",
@@ -39,4 +40,10 @@ export const translationsEn =
     PC: "Piece",
     DIRECT: "Direct",
     SHIPMENT: "Shipment",
+    GoToDetail: "Go To Detail",
+    Search: "Search",
+    RequestNo: "Request No",
+    RequestTitle: "Request Title",
+    Status: "Status",
+    ProvidingRatio: "Providing Ratio",
 }
