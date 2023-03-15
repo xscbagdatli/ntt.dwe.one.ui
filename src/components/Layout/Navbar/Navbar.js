@@ -56,7 +56,7 @@ export default function Navbar({
         },
         {
             title: "ProvidedRequestsByMe",
-            path: "/my-requests",
+            path: "/provided-requests",
             icon: <BsCheck2Square />
         }
     ];
@@ -93,7 +93,7 @@ export default function Navbar({
         else if (location?.pathname.includes("/requests-list")) {
             setValue(2);
         }
-        else if (location?.pathname.includes("/my-requests")) {
+        else if (location?.pathname.includes("/provided-requests")) {
             setValue(3);
         }
         // else if (location?.pathname === "/requests-list") {

@@ -108,8 +108,8 @@ export default function RequestsListTable() {
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
-          ).map((row) => (
-            <StyledTableRow key={row.requestNo}>
+          ).map((row, index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {row.requestNo}
               </StyledTableCell>

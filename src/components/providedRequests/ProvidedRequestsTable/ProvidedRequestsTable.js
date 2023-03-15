@@ -8,17 +8,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Box, Chip, LinearProgress, TableFooter, TablePagination, Typography } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {
   tableHeadCategories
-} from "../create-request-data.js"
+} from "../provided-requests-data.js"
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#F6F9FA",
-    color: theme.palette.common.black,
+    backgroundColor: "#F43443",
+    color: "#FFF",
     fontWeight: "bold",
     textAlign: "center"
   },
@@ -38,61 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(
-//   requestNo,
-//   expectedDeliveryDate,
-//   title,
-//   statusId,
-//   progress,
-//   a,
-//   b,
-//   c,
-//   d,
-//   e,
-//   f,
-//   g,
-// ) {
-//   return { requestNo, expectedDeliveryDate, title, statusId, progress, a, b, c, d, e, f, g };
-// }
-
-// const rows = [
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 50, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 25, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 15, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 35, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-// ];
-
-function LinearProgressWithLabel(props) {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Box sx={{ width: '100%', mr: 1 }}>
-        <LinearProgress variant="determinate" {...props} />
-      </Box>
-      <Box sx={{ minWidth: 35 }}>
-        <Typography variant="body2" color="text.secondary">{`${Math.round(
-          props.value,
-        )}%`}</Typography>
-      </Box>
-    </Box>
-  );
-}
-
-export default function CreateRequestTable() {
+export default function ProvidedRequestsTable() {
   const { t } = useTranslation()
   const createProductObjectBody = useSelector((state) => state.createRequest.createProductObjectBody)
 
@@ -104,8 +49,8 @@ export default function CreateRequestTable() {
   };
 
   return (
-    <TableContainer component={Paper} >
-      <Table sx={{ maxWidth: '100%', minHeight: 440, padding: "15px" }} stickyHeader>
+    <TableContainer component={Paper} sx={{ marginTop: "30px" }}>
+      <Table sx={{ maxWidth: '100%', minHeight: 300, padding: "15px" }} stickyHeader>
         <TableHead>
           <TableRow>
             {
@@ -122,6 +67,7 @@ export default function CreateRequestTable() {
             : createProductObjectBody
           ).map((row, i) => (
             <StyledTableRow key={i}>
+              <StyledTableCell align="right">{row.expectedDeliveryDate}</StyledTableCell>
               <StyledTableCell align="right">{row.productname}</StyledTableCell>
               <StyledTableCell align="right">{row?.productCategory}</StyledTableCell>
               <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell>

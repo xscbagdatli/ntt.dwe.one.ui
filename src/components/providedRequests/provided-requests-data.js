@@ -97,11 +97,11 @@ export const productInputSpecs = [
 export const tableHeadCategories = [
     {
         id: 0,
-        title: "ProductName",
+        title: "ExpectedDeliveryDate",
     },
     {
         id: 1,
-        title: "ProductSector",
+        title: "ProductName",
     },
     {
         id: 2,
@@ -109,43 +109,47 @@ export const tableHeadCategories = [
     },
     {
         id: 3,
-        title: "ProductQuantity",
+        title: "ProductSector",
     },
     {
         id: 4,
-        title: "MeasureUnit",
+        title: "ProductQuantity",
     },
     {
         id: 5,
-        title: "ProductPrice",
+        title: "MeasureUnit",
     },
     {
         id: 6,
+        title: "ProductPrice",
+    },
+    {
+        id: 7,
         title: "PriceUnit",
     },
 
     {
-        id: 7,
+        id: 8,
         title: "PurchaseType",
     },
     {
-        id: 8,
+        id: 9,
         title: "ProvidingType",
     },
     {
-        id: 9,
+        id: 10,
         title: "DeliveryType",
     },
     {
-        id: 10,
+        id: 11,
         title: "ProviderCompany",
     },
     {
-        id: 11,
+        id: 12,
         title: "SpecialProduct",
     },
     {
-        id: 12,
+        id: 13,
         title: "Url",
     },
 

@@ -1,0 +1,39 @@
+.requests_list_container {
+    @apply flex flex-col justify-center p-[10px]
+}
+
+.requests_list_header_container {
+    @apply flex flex-col items-baseline justify-between
+}
+
+.requests_list_header_title {
+    @apply my-[11px] font-bold text-[30px] leading-[38px]
+}
+
+.requests_list_header_description {
+    @apply text-[14px] leading-[25px]
+}
+
+.requests_list_actions_container {
+    @apply flex items-center justify-between p-[12px] border-2 mb-6 mt-11
+}
+
+.requests_list_actions_right_container {
+    @apply flex
+}
+
+.requests_list_excel_container {
+    @apply flex justify-center h-[44px] border-2 bg-[#FFFFFF]
+}
+
+.requests_list_excel_button {
+    @apply w-[56px] rounded-none
+}
+
+.requests_list_filter_container {
+    @apply flex justify-center h-[44px] border-2 ml-3 bg-[#FFFFFF]
+}
+
+.requests_list_filter_button {
+    @apply w-[183px] capitalize font-bold text-[#344054]
+}

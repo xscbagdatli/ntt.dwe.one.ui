@@ -6,6 +6,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Homepage from './pages/Homepage/Homepage';
 import RequestsListPage from './pages/RequestsListPage/RequestsListPage';
+import ProvidedRequestsPage from './pages/ProvidedRequestsPage/ProvidedRequestsPage';
 // Components
 import { Box } from '@mui/system';
 import { Button, Container, Text } from '@mui/material';
@@ -31,8 +32,6 @@ i18n
   })
 
 
-
-
 function App() {
 
   let location = useLocation();
@@ -40,14 +39,9 @@ function App() {
   return (
     <Suspense fallback="Loading">
       <div className="App">
-        <Container
-          maxWidth="xl"
-        >
+        <Container maxWidth="xl">
           <LanguageChange />
-          <Box display="flex"
-            sx={{
-              // height: "750px"
-            }} >
+          <Box display="flex">
             <Layout />
             <Box width="78%" marginLeft="auto" padding={location?.pathname !== "/create-request" && "0 0 0px 20px"} bgcolor="#F5F5F5">
               <Routes>
@@ -55,7 +49,7 @@ function App() {
                 <Route path="home" element={<RequestsListPage />}></Route>
                 <Route path="create-request" element={<CreateRequestPage />}></Route>
                 <Route path="requests-list" element={<RequestsListPage />}></Route>
-                <Route path="myRequests" element={<RequestsListPage />}></Route>
+                <Route path="provided-requests" element={<ProvidedRequestsPage />}></Route>
               </Routes>
             </Box>
           </Box>

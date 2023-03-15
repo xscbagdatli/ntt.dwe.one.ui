@@ -169,7 +169,7 @@ function CreateRequest() {
               {
                 requesterInputSpecs?.map((el, index) => (
                   el.type === "input" ?
-                    <FormControl >
+                    <FormControl key={index} >
                       <TextField
                         error={!Object.values(requesterValuesToPost)[el.id]}
                         id="outlined-error-helper-text"
@@ -180,24 +180,22 @@ function CreateRequest() {
                       />
                     </FormControl>
                     :
-                    <>
-                      <FormControl sx={{ width: "222px", margin: "8px" }}>
-                        <InputLabel id="demo-simple-select-label">{t(el.title)}</InputLabel>
-                        <Select
-                          error={!Array(Object.values(requesterValuesToPost)[el.id])}
-                          helperText={!Object.values(requesterValuesToPost)[el.id] ? t("PleaseFill") : ""}
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          // value={age}
-                          label={t(el.title)}
-                          onChange={(e) => handleRequesterInputs(e, el.id)}
-                        >
-                          <MenuItem value={10}>Ten</MenuItem>
-                          <MenuItem value={20}>Twenty</MenuItem>
-                          <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </>
+                    <FormControl key={index} sx={{ width: "222px", margin: "8px" }}>
+                      <InputLabel id="demo-simple-select-label">{t(el.title)}</InputLabel>
+                      <Select
+                        error={!Array(Object.values(requesterValuesToPost)[el.id])}
+                        helperText={!Object.values(requesterValuesToPost)[el.id] ? t("PleaseFill") : ""}
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        // value={age}
+                        label={t(el.title)}
+                        onChange={(e) => handleRequesterInputs(e, el.id)}
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
                 ))
               }
             </Box>
@@ -229,41 +227,38 @@ function CreateRequest() {
                       />
                     </FormControl>
                     :
-                    <>
-                      <FormControl key={el.id} sx={{ width: index === 5 ? "222px" : "163px", margin: "8px" }}>
-                        <InputLabel>{t(el.title)}</InputLabel>
-                        <Select
-                          error={!Object.values(productValuesToPost)[el.id]}
-                          helperText={!Object.values(productValuesToPost)[el.id] ? t("PleaseFill") : ""}
-                          id="demo-simple-select"
-                          // value={age}
-                          label={t(el.title)}
-                          onChange={(e) => handleProductInputs(e, el.id)}
-                        >
-                          {
-                            (priceUnits.length > 0 && el.id === 3) ?
-                              priceUnits?.map(unit => {
-                                if (unit.languageId?.toLowerCase() === i18n.language) {
-                                  return <MenuItem value={unit?.objectId}>{unit?.objectId}</MenuItem>
-                                }
+                    <FormControl key={el.id} sx={{ width: index === 5 ? "222px" : "163px", margin: "8px" }}>
+                      <InputLabel>{t(el.title)}</InputLabel>
+                      <Select
+                        error={!Object.values(productValuesToPost)[el.id]}
+                        helperText={!Object.values(productValuesToPost)[el.id] ? t("PleaseFill") : ""}
+                        // value={age}
+                        label={t(el.title)}
+                        onChange={(e) => handleProductInputs(e, el.id)}
+                      >
+                        {
+                          (priceUnits.length > 0 && el.id === 3) ?
+                            priceUnits?.map(unit => {
+                              if (unit.languageId?.toLowerCase() === i18n.language) {
+                                return <MenuItem key={unit?.id} value={unit?.objectId}>{unit?.objectId}</MenuItem>
+                              }
+                            })
+                            :
+                            (measureUnits.length > 0 && el.id === 4) ?
+                              measureUnits?.map(unit => {
+                                return <MenuItem key={unit?.text.id} value={unit?.text.objectId}>{t(unit?.text.objectId)}</MenuItem>
                               })
                               :
-                              (measureUnits.length > 0 && el.id === 4) ?
-                                measureUnits?.map(unit => {
-                                  return <MenuItem value={unit?.text.objectId}>{t(unit?.text.objectId)}</MenuItem>
+                              (deliveryTypes.length > 0 && el.id === 7) ?
+                                deliveryTypes?.map(unit => {
+                                  return <MenuItem key={unit?.text.id} value={unit?.text.objectId}>{t(unit?.text.objectId)}</MenuItem>
                                 })
                                 :
-                                (deliveryTypes.length > 0 && el.id === 7) ?
-                                  deliveryTypes?.map(unit => {
-                                    return <MenuItem value={unit?.text.objectId}>{t(unit?.text.objectId)}</MenuItem>
-                                  })
-                                  :
-                                  <MenuItem value={""}>{""}</MenuItem>
+                                <MenuItem value={""}>{""}</MenuItem>
 
-                          }
-                        </Select>
-                      </FormControl>
-                    </>
+                        }
+                      </Select>
+                    </FormControl>
                 ))
               }
             </Box>
