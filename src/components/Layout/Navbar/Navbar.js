@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarCss from './styles.module.css';
 import { BsCheck2Square, BsPlusLg, BsListUl } from "react-icons/bs"
 import { CgHomeAlt } from "react-icons/cg"
@@ -7,16 +7,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Box } from '@mui/system';
 import { Avatar, Divider, Link, Stack, Typography } from '@mui/material';
-import { Link as RouteLink } from 'react-router-dom';
+import { Link as RouteLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export default function Navbar({
-    value,
-    setValue,
-    component,
-    setComponent
+
 }) {
     const { t } = useTranslation()
+    let location = useLocation();
+
+    const [value, setValue] = useState(0);
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -66,6 +66,7 @@ export default function Navbar({
             justifyContent: "flex-start",
             textTransform: "capitalize",
             borderRadius: "6px",
+            maxWidth: "300px",
             minHeight: "50px",
             background: index === value && "#F43443",
             color: index === value ? "#FFF" : "unset"
@@ -83,29 +84,39 @@ export default function Navbar({
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        if (newValue === 0) {
-            setComponent(newValue);
-        }
-        else if (newValue === 1) {
-            setComponent(newValue);
-        }
-        else if (newValue === 2) {
-            setComponent(newValue);
-        }
-        else if (newValue === 3) {
-            setComponent(newValue);
-        }
     };
+
+    useEffect(() => {
+        if (location?.pathname.includes("/create-request")) {
+            setValue(1);
+        }
+        else if (location?.pathname.includes("/requests-list")) {
+            setValue(2);
+        }
+        else if (location?.pathname.includes("/my-requests")) {
+            setValue(3);
+        }
+        // else if (location?.pathname === "/requests-list") {
+        //     setValue(newValue);
+        // }
+    }, [])
+
 
     return (
         <Box
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            width="21%"
+            width="20%"
+            height="600px"
+            style={{ position: "fixed" }}
         >
             <Box>
-                <Box display="flex" alignItems="center" justifyContent="center" paddingBottom="70px"> <img src='./one-heart-logo.png' alt='logo' /></Box>
+                <Box padding="20px 0 70px 70px">
+                    <Link href="/" underline="none" color="unset" fontSize="22px">
+                        <img src='./one-heart-logo.png' alt='logo' />
+                    </Link>
+                </Box>
                 <Tabs orientation='vertical' value={value} onChange={handleChange}
                     sx={{
                         '& .css-10d9dml-MuiTabs-indicator': {
@@ -133,7 +144,9 @@ export default function Navbar({
                         {t("Help")}
                     </Link>
                 </Stack>
-                <Divider />
+                <Box width="280px">
+                    <Divider />
+                </Box>
                 <Box display="flex" alignItems="center" margin="14px 14px 0 14px">
                     <Avatar alt="avatar" src="https://www.assyst.de/cms/upload/sub/digitalisierung/18-F.jpg" />
                     <Box marginLeft="13px">

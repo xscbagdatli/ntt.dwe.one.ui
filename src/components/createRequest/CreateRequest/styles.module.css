@@ -15,7 +15,7 @@
 }
 
 .create_request_info_container {
-    @apply mb-[17px] mt-[13px] border-[1px]
+    @apply mt-[13px] border-[1px]
 }
 
 /* .create_request_requester_info_container {
