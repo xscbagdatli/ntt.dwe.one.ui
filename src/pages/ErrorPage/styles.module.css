@@ -1,0 +1,3 @@
+.content_container {
+    @apply p-[unset] bg-[#fff]
+}

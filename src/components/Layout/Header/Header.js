@@ -46,7 +46,7 @@ export default function Header({
                 padding="20px 0 20px 50px"
             >
                 <Link href="/" underline="none" color="unset" fontSize="22px">
-                    <img src='./one-heart-logo.png' alt='logo' />
+                    <img src='../one-heart-logo.png' alt='logo' />
                 </Link>
             </Box>
             {/* <Box style={{ display: "flex" }}>
@@ -86,7 +86,7 @@ export default function Header({
                         size="small">tr
                     </Button>
                 </Box>
-                <Avatar alt="avatar" src="https://www.assyst.de/cms/upload/sub/digitalisierung/18-F.jpg" />
+                <Avatar alt="avatar" src="https://www.assyst.de/cms/upload/sub/digitalisierung/15-M.jpg" />
                 <Box marginLeft="13px">
                     <p style={bottomTextStyle()}>Emre Taşdemir</p>
                     <p style={bottomTextStyle()}>emre.tasdemir@bs.nttdata.com</p>

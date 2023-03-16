@@ -15,10 +15,10 @@ function Layout() {
     // }
 
     return (
-        <Box>
+        <>
             <Header />
             <Navbar />
-        </Box>
+        </>
     );
 };
 

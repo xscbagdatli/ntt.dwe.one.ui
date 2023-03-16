@@ -9,11 +9,16 @@ import { Box } from '@mui/system';
 import { Avatar, Divider, Link, Stack, Typography } from '@mui/material';
 import { Link as RouteLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import {
+    useNavigate,
+} from 'react-router-dom';
 
 export default function Navbar({
 
 }) {
     const { t } = useTranslation()
+    const navigate = useNavigate()
     let location = useLocation();
 
     const [value, setValue] = useState(0);
@@ -87,7 +92,10 @@ export default function Navbar({
     };
 
     useEffect(() => {
-        if (location?.pathname.includes("/create-request")) {
+        if (location?.pathname === ("/")) {
+            setValue(0);
+        }
+        else if (location?.pathname.includes("/create-request")) {
             setValue(1);
         }
         else if (location?.pathname.includes("/requests-list")) {
@@ -99,7 +107,7 @@ export default function Navbar({
         // else if (location?.pathname === "/requests-list") {
         //     setValue(newValue);
         // }
-    }, [])
+    }, [location])
 
 
     return (
@@ -108,28 +116,43 @@ export default function Navbar({
             flexDirection="column"
             justifyContent="space-between"
             width="18%"
-            // height="10%"
+            // height="500px"
             style={{ position: "fixed" }}
             marginTop="50px"
         >
-            <Box>
-                {/* <Box padding="20px 0 70px 70px">
+
+            {/* <Box padding="20px 0 70px 70px">
                     <Link href="/" underline="none" color="unset" fontSize="22px">
                         <img src='./one-heart-logo.png' alt='logo' />
                     </Link>
                 </Box> */}
-                <Tabs orientation='vertical' value={value} onChange={handleChange}
-                    sx={{
-                        '& .css-10d9dml-MuiTabs-indicator': {
-                            width: "0px !important"
-                        }
-                    }}>
-                    {
-                        menu?.map((item, index) => (
-                            <Tab className='navbar-tab' style={navbarTabStyle(index)} key={index} icon={item.icon} iconPosition="start" label={t(item.title)} to={item.path} component={RouteLink} />
-                        ))
+            <Tabs orientation='vertical' value={value} onChange={handleChange}
+                sx={{
+                    '& .css-10d9dml-MuiTabs-indicator': {
+                        width: "0px !important"
                     }
-                </Tabs>
+                }}>
+                {
+                    menu?.map((item, index) => (
+                        <Tab className='navbar-tab' style={navbarTabStyle(index)} key={index} icon={item.icon} iconPosition="start" label={t(item.title)} to={item.path} component={RouteLink} />
+                    ))
+                }
+            </Tabs>
+
+            <Box style={{
+                display: "flex", alignItems: "center", justifyContent: "flex-end", width: "242px",
+                marginTop: "20px"
+            }}>
+                <Box onClick={() => navigate(-1)}
+                    style={{
+                        display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#E1474A", borderRadius: "30px",
+                        width: "40px",
+                        height: "40px",
+                        cursor: "pointer",
+                        color: "#FFFFFF"
+                    }}>
+                    <ArrowBackIosNewIcon />
+                </Box>
             </Box>
             {/* <Box
                 display="flex"

@@ -1,0 +1,31 @@
+.request_detail_container {
+    @apply flex flex-col justify-center p-[10px]
+}
+
+.request_detail_header_container {
+    @apply flex flex-col items-baseline justify-between
+}
+
+.request_detail_header_title {
+    @apply my-[11px] font-bold text-[30px] leading-[38px]
+}
+
+.request_detail_header_description {
+    @apply text-[14px] leading-[25px] mr-[10px]
+}
+
+.request_detail_dashboard_container {
+    @apply flex items-center justify-between p-[12px] border-2 mb-6 mt-11 bg-[#F43443]
+}
+
+.request_detail_dashboard_column {
+    @apply text-[#FFF] text-[14px] p-[12px] border-l-[1px] first:border-0
+}
+
+.request_detail_dashboard_title {
+    /* @apply  */
+}
+
+.request_detail_dashboard_value {
+    @apply font-bold
+}

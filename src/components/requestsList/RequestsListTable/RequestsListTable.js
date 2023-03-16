@@ -118,7 +118,7 @@ export default function RequestsListTable() {
               <StyledTableCell align="right">{<Chip label={row.statusId === 1 ? "Tamamlandı" : row.statusId === 2 ? "Paylaşımda" : "Açık"} color={row.statusId === 1 ? "success" : row.statusId === 2 ? "warning" : "info"} />}</StyledTableCell>
               <StyledTableCell align="right">{<LinearProgressWithLabel value={row.progress} />}</StyledTableCell>
               <StyledTableCell align="right">
-                <div style={{
+                <Box component="a" href={`requests-list/request-detail/${index}`} style={{
                   display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#E1474A", borderRadius: "8px", width: "115px",
                   height: "32px",
                   cursor: "pointer",
@@ -126,7 +126,7 @@ export default function RequestsListTable() {
                 }}>
                   {t("GoToDetail")}
                   <ArrowForwardIcon />
-                </div>
+                </Box>
               </StyledTableCell>
             </StyledTableRow>
           ))}
