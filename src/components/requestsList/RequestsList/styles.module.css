@@ -27,7 +27,7 @@
 }
 
 .requests_list_excel_button {
-    @apply w-[56px] rounded-none
+    @apply w-[56px]
 }
 
 .requests_list_filter_container {

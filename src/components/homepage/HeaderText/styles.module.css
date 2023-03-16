@@ -3,7 +3,7 @@
 }
 
 .header_title {
-    @apply font-bold text-[38px] leading-[38px] mb-[50px]
+    @apply w-[500px] font-bold text-[38px] leading-[44px] mb-[35px]
 }
 
 .header_description {

@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import React from 'react'
 import LayoutCSS from "./styles.module.css"
-import Navbar from '../Layout/Navbar/Navbar';
+import Navbar from './Navbar/Navbar';
+import Header from './Header/Header';
+import { Box } from '@mui/system';
 
 function Layout() {
     // const navigate = useNavigate();
@@ -13,7 +15,10 @@ function Layout() {
     // }
 
     return (
-        <Navbar />
+        <Box>
+            <Header />
+            <Navbar />
+        </Box>
     );
 };
 

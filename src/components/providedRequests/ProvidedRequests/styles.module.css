@@ -1,5 +1,5 @@
 .requests_list_container {
-    @apply flex flex-col justify-center p-[10px]
+    @apply flex flex-col justify-center
 }
 
 .requests_list_header_container {
@@ -20,20 +20,4 @@
 
 .requests_list_actions_right_container {
     @apply flex
-}
-
-.requests_list_excel_container {
-    @apply flex justify-center h-[44px] border-2 bg-[#FFFFFF]
-}
-
-.requests_list_excel_button {
-    @apply w-[56px] rounded-none
-}
-
-.requests_list_filter_container {
-    @apply flex justify-center h-[44px] border-2 ml-3 bg-[#FFFFFF]
-}
-
-.requests_list_filter_button {
-    @apply w-[183px] capitalize font-bold text-[#344054]
 }

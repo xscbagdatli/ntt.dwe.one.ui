@@ -7,11 +7,11 @@
 }
 
 .requests_container {
-    @apply flex items-center bg-[#FFFFFF] my-[55px] px-[30px]
+    @apply flex items-center bg-[#FFFFFF] mt-[55px] px-[30px]
 }
 
 .request_number {
-    @apply w-[] font-normal text-[100px] text-[#B42318]
+    @apply font-normal text-[100px] text-[#B42318]
 }
 
 .request_text {

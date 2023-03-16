@@ -16,7 +16,7 @@ import { initReactI18next, useTranslation } from "react-i18next";
 import { translationsEn } from './localization/en';
 import { translationsTr } from './localization/tr';
 import CreateRequestPage from './pages/CreateRequestPage/CreateRequestPage';
-import LanguageChange from './components/Layout/LanguageChange/LanguageChange';
+import Header from './components/Layout/Header/Header';
 
 // Localization Setup
 i18n
@@ -39,9 +39,9 @@ function App() {
   return (
     <Suspense fallback="Loading">
       <div className="App">
-        <Container maxWidth="xl">
-          <LanguageChange />
-          <Box display="flex">
+        <Container maxWidth="lg">
+          {/* <Header /> */}
+          <Box>
             <Layout />
             <Box width="78%" marginLeft="auto" padding={location?.pathname !== "/create-request" && "0 0 0px 20px"} bgcolor="#F5F5F5">
               <Routes>

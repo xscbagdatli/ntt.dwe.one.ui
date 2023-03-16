@@ -107,16 +107,17 @@ export default function Navbar({
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            width="20%"
-            height="600px"
+            width="18%"
+            // height="10%"
             style={{ position: "fixed" }}
+            marginTop="50px"
         >
             <Box>
-                <Box padding="20px 0 70px 70px">
+                {/* <Box padding="20px 0 70px 70px">
                     <Link href="/" underline="none" color="unset" fontSize="22px">
                         <img src='./one-heart-logo.png' alt='logo' />
                     </Link>
-                </Box>
+                </Box> */}
                 <Tabs orientation='vertical' value={value} onChange={handleChange}
                     sx={{
                         '& .css-10d9dml-MuiTabs-indicator': {
@@ -130,7 +131,7 @@ export default function Navbar({
                     }
                 </Tabs>
             </Box>
-            <Box
+            {/* <Box
                 display="flex"
                 flexDirection="column"
                 justifyContent="space-between"
@@ -154,7 +155,7 @@ export default function Navbar({
                         <p style={bottomTextStyle()}>emre.tasdemir@bs.nttdata.com</p>
                     </Box>
                 </Box>
-            </Box>
+            </Box> */}
         </Box>
 
     )

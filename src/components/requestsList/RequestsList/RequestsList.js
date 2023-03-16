@@ -34,7 +34,7 @@ function RequestsList() {
         </div>
         <div className={RequestsListCss.requests_list_actions_right_container}>
           <div className={RequestsListCss.requests_list_excel_container}>
-            <IconButton className={RequestsListCss.requests_list_excel_button} color="primary" aria-label="upload excel" component="label">
+            <IconButton className={RequestsListCss.requests_list_excel_button} color="primary" aria-label="upload excel" component="label" sx={{ borderRadius: "unset" }}>
               <input hidden accept=".xlsx" type="file" />
               <img src={ExcelButton} alt="excel-button" />
             </IconButton>

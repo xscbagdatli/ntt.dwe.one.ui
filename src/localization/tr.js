@@ -1,6 +1,7 @@
 export const translationsTr =
 {
-    HeaderTitle: "Kalbimiz Deprem Bölgesinde",
+    HeaderTitle: "Kalbimiz ve Desteklerimiz Deprem Bölgesinde!",
+    HeaderDescription: "Ülkemizin yaşadığı büyük doğal afetin ilk anından itibaren, kalplerimiz afetten etkilenen arkadaşlarımız ve yakınları için atıyor.<br><br>one Heart Dayanışma Platformumuz aracılığıyla, depremdem etkilenen çalışma arkadaşlarımız ve yakınlarının yaşamlarını yeniden kurmaları için onlara el uzatabilir, ihtiyaçlarının giderilmesine destek olabilirsiniz.<br><br>Platform ve sürece dair tüm soru, öneri ve geri bildirimlerinizi <strong> Çalışan Deneyimi Ekibi (pxp-solutions-TR@bs.nttdata.com) </strong> ile iletişime geçerek paylaşabilirsiniz.",
     Help: "Yardım",
     Filters: "Filtreler",
     RequestsList: "Talep Listesi",
