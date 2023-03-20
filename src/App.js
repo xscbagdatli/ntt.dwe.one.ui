@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import './App.css';
 // Route Import
 import { Route, Routes, useLocation } from 'react-router-dom';
@@ -37,6 +37,8 @@ i18n
 function App() {
 
   let location = useLocation();
+
+  const [selectedRequest, setSelectedRequest] = useState()
 
   return (
     <Suspense fallback="Loading">

@@ -46,7 +46,7 @@ export default function Header({
                 padding="20px 0 20px 50px"
             >
                 <Link href="/" underline="none" color="unset" fontSize="22px">
-                    <img src='../one-heart-logo.png' alt='logo' />
+                    <img src='/one-heart-logo.png' alt='logo' />
                 </Link>
             </Box>
             {/* <Box style={{ display: "flex" }}>

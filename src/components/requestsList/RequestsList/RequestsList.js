@@ -5,12 +5,18 @@ import IconButton from '@mui/material/IconButton';
 import ExcelButton from '../../../assets/images/excel-button.png';
 import RequestsListTable from '../RequestsListTable/RequestsListTable';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import i18n from "i18next";
 import { useTranslation } from 'react-i18next';
+import fetchRequirements from '../../../api/requestsList/fetchRequirements';
 
 function RequestsList() {
   const { t } = useTranslation()
+
+  useEffect(() => {
+    fetchRequirements()
+  }, [])
+
 
   return (
     <div className={RequestsListCss.requests_list_container}>

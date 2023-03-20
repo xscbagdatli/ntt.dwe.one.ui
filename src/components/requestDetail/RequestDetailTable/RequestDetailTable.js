@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,10 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Chip, LinearProgress, TableFooter, TablePagination, Typography } from '@mui/material';
+import { TableFooter, TablePagination } from '@mui/material';
 import {
   tableHeadCategories
-} from "../../providedRequests/provided-requests-data.js"
+} from "../request-detail-data"
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -39,14 +39,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function RequestDetailTable() {
   const { t } = useTranslation()
-  const createProductObjectBody = useSelector((state) => state.createRequest.createProductObjectBody)
+
+  const selectedRequestItem = useSelector((state) => state.requestDetail.selectedRequestItem)
 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(2)
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (newPage) => {
     setPage(newPage);
   };
+
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: "30px" }}>
@@ -62,25 +64,21 @@ export default function RequestDetailTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(rowsPerPage > 0
-            ? createProductObjectBody?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : createProductObjectBody
+          {((rowsPerPage > 0 && selectedRequestItem?.length > 0)
+            ? selectedRequestItem?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : selectedRequestItem
           ).map((row, i) => (
             <StyledTableRow key={i}>
-              <StyledTableCell align="right">{row.expectedDeliveryDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.productname}</StyledTableCell>
-              <StyledTableCell align="right">{row?.productCategory}</StyledTableCell>
-              <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.product.productGroup.code)}</StyledTableCell>
+              <StyledTableCell align="right">{row.product.unitPrice + " " + row.product.currency.code}</StyledTableCell>
               <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-              <StyledTableCell align="right">{t(row.measureUnit)}</StyledTableCell>
-              <StyledTableCell align="right">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{row.priceUnit}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.product.unitOfMeasure.code)}</StyledTableCell>
               <StyledTableCell align="right">{row.purchaseType}</StyledTableCell>
-              <StyledTableCell align="right">{row.providingType}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.splitProfileStatus.code)}</StyledTableCell>
               <StyledTableCell align="right">{t(row.deliveryType)}</StyledTableCell>
-              <StyledTableCell align="right">{row.deliveryCompany}</StyledTableCell>
-              <StyledTableCell align="right">{(row.isSpecialProduct ? t("Yes") : t("No"))}</StyledTableCell>
-              <StyledTableCell align="right">{row.productUrl}</StyledTableCell>
+              <StyledTableCell align="right">{row.product.businessPartner.name}</StyledTableCell>
+              <StyledTableCell align="right">{(row.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
+              <StyledTableCell align="right">{row.url}</StyledTableCell>
             </StyledTableRow>
           ))}
           {/* 
@@ -94,7 +92,7 @@ export default function RequestDetailTable() {
           <TablePagination
             rowsPerPageOptions={[]}
             colSpan={3}
-            count={createProductObjectBody?.length}
+            count={selectedRequestItem?.length}
             rowsPerPage={2}
             page={page}
             onPageChange={handleChangePage}

@@ -32,7 +32,7 @@ export const translationsTr =
     SpecialProduct: "Özel Ürün",
     AddProduct: "Ürün Ekle",
     PleaseFill: "Lütfen doldurunuz.",
-    ProductName: "Ürün İsmi",
+    ProductName: "Ürün Adı",
     ProductSector: "Ürün Sektörü",
     ProductQuantity: "Ürün Miktarı",
     ProductPrice: "Ürün Fiyatı",
@@ -50,4 +50,13 @@ export const translationsTr =
     RequestTitle: "Talep Başlığı",
     Status: "Durum",
     ProvidingRatio: "Karşılanma Oranı",
+    COMPLETED: "Tamamlandı",
+    PARTIAL: "Kısmi",
+    OPEN: "Açık",
+    CANCELLED: "İptal Edildi",
+    VERIFIED: "Onaylı",
+    UnitPrice: "Birim Fiyat",
+    HOMEAPPLIANCES: "Ev Aletleri",
+    MULTI: "Çoklu",
+    SINGLE: "Tekli"
 }

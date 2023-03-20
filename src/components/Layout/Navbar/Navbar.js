@@ -140,7 +140,10 @@ export default function Navbar({
             </Tabs>
 
             <Box style={{
-                display: "flex", alignItems: "center", justifyContent: "flex-end", width: "242px",
+                display: location?.pathname.includes("/request-detail") ? "flex" : "none",
+                alignItems: "center",
+                justifyContent: "flex-end",
+                width: "242px",
                 marginTop: "20px"
             }}>
                 <Box onClick={() => navigate(-1)}

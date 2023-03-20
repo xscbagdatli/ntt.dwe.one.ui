@@ -50,4 +50,13 @@ export const translationsEn =
     RequestTitle: "Request Title",
     Status: "Status",
     ProvidingRatio: "Providing Ratio",
+    COMPLETED: "Completed",
+    PARTIAL: "Partial",
+    OPEN: "Open",
+    CANCELLED: "Cancelled",
+    VERIFIED: "Verified",
+    UnitPrice: "Unit Price",
+    HOMEAPPLIANCES: "Home Appliances",
+    MULTI: "Multi",
+    SINGLE: "Single"
 }

@@ -1,6 +1,4 @@
-// Redux eklemelerinden sonra actionları değiştir !!
-
-import { measureUnits } from "../../redux/commonSlice";
+import { requirements } from "../../redux/requestsListSlice";
 import { store } from "../../redux/store";
 
 
@@ -11,9 +9,9 @@ async function fetchRequirements() {
         const message = `An error has occured: ${response.status}`;
         throw new Error(message);
     }
-    const units = await response.json();
-    store.dispatch(measureUnits(units.result.data))
-    return units.result.data;
+    const requests = await response.json();
+    store.dispatch(requirements(requests.result.data))
+    return requests.result.data;
 }
 fetchRequirements().catch(error => {
     return error.message; // 'An error has occurred: 404'
