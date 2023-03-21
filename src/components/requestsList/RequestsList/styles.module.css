@@ -15,11 +15,15 @@
 }
 
 .requests_list_actions_container {
-    @apply flex items-center justify-between p-[12px] border-2 mb-6 mt-11
+    @apply flex items-center justify-between w-full p-[12px] border-2 mb-6 mt-11
+}
+
+.requests_list_actions_left_container {
+    @apply w-[65%]
 }
 
 .requests_list_actions_right_container {
-    @apply flex
+    @apply flex w-[32%]
 }
 
 .requests_list_excel_container {
@@ -31,9 +35,5 @@
 }
 
 .requests_list_filter_container {
-    @apply flex justify-center h-[44px] border-2 ml-3 bg-[#FFFFFF]
-}
-
-.requests_list_filter_button {
-    @apply w-[183px] capitalize font-bold text-[#344054]
+    @apply flex justify-center w-full h-[44px] border-2 ml-3 bg-[#FFFFFF]
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { store } from '../../../redux/store';
 import { selectedRequestIndex } from '../../../redux/requestsListSlice';
 import { Link } from 'react-router-dom';
-import fetchRequirementItem from '../../../api/requestDetail/fetchRequirementItem';
+// import fetchRequirementItem from '../../../api/requestDetail/fetchRequirementItem';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,20 +39,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  requestNo,
-  expectedDeliveryDate,
-  title,
-  statusId,
-  progress,
-) {
-  return { requestNo, expectedDeliveryDate, title, statusId, progress };
-}
-
-const rows = [
-  createData('#7353967', "07/10/2023", "Elektronik", 1, 50),
-];
-
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -68,13 +54,25 @@ function LinearProgressWithLabel(props) {
   );
 }
 
-export default function RequestsListTable() {
+export default function RequestsListTable({
+  filteredRequirements
+}) {
   const { t } = useTranslation()
 
   const requirements = useSelector((state) => state.requestsList.requirements)
 
+  const [requirementsForTable, setRequirementsForTable] = useState([])
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
+
+  useEffect(() => {
+    if (filteredRequirements?.length > 0) {
+      setRequirementsForTable(filteredRequirements)
+    }
+    else {
+      setRequirementsForTable(requirements)
+    }
+  }, [filteredRequirements, requirements])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -122,8 +120,8 @@ export default function RequestsListTable() {
         </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? requirements?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : requirements
+            ? requirementsForTable?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : requirementsForTable
           ).map((row, index) => (
             <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
@@ -161,7 +159,7 @@ export default function RequestsListTable() {
           <TablePagination
             rowsPerPageOptions={[]}
             colSpan={3}
-            count={requirements?.length}
+            count={requirementsForTable?.length}
             rowsPerPage={5}
             page={page}
             onPageChange={handleChangePage}

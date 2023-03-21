@@ -1,22 +1,28 @@
-import { Box, Typography, Container, Button, TextField, InputAdornment, FormControl } from '@mui/material';
+import { Button, TextField, InputAdornment } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import RequestsListCss from "./styles.module.css"
 import IconButton from '@mui/material/IconButton';
 import ExcelButton from '../../../assets/images/excel-button.png';
 import RequestsListTable from '../RequestsListTable/RequestsListTable';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { useEffect, useState } from 'react';
-import i18n from "i18next";
+import { React, useState } from 'react';
+// import i18n from "i18next";
 import { useTranslation } from 'react-i18next';
-import fetchRequirements from '../../../api/requestsList/fetchRequirements';
+import { useSelector } from 'react-redux';
 
 function RequestsList() {
   const { t } = useTranslation()
+  const [filteredRequirements, setFilteredRequirements] = useState([])
 
-  useEffect(() => {
-    fetchRequirements()
-  }, [])
+  const requirements = useSelector((state) => state.requestsList.requirements)
 
+  const searchChange = (e) => {
+    let filteredRequirementsToSet = requirements.filter(request => {
+      return request.requestName.toLowerCase().includes(e.target.value.toLowerCase())
+    })
+
+    setFilteredRequirements(filteredRequirementsToSet)
+  }
 
   return (
     <div className={RequestsListCss.requests_list_container}>
@@ -29,7 +35,8 @@ function RequestsList() {
       <div className={RequestsListCss.requests_list_actions_container}>
         <div className={RequestsListCss.requests_list_actions_left_container}>
           <TextField id="outlined-basic" label={t("Search")} variant="outlined"
-            sx={{ width: "600px", background: "#fff" }}
+            onChange={(e) => searchChange(e)}
+            sx={{ width: "100%", background: "#fff" }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -47,12 +54,13 @@ function RequestsList() {
           </div>
           <div className={RequestsListCss.requests_list_filter_container}>
             <Button
-              className={RequestsListCss.requests_list_filter_button}
-              // sx={{
-              //   textTransform: "capitalize",
-              //   fontWeight: "bold",
-              //   color: " #344054"
-              // }}
+              // className={RequestsListCss.requests_list_filter_button}
+              sx={{
+                width: "100%",
+                textTransform: "capitalize",
+                fontWeight: "bold",
+                color: " #344054"
+              }}
               startIcon={<FilterListIcon sx={{
                 color: "#F43443"
               }} />}>
@@ -62,7 +70,7 @@ function RequestsList() {
         </div>
       </div>
 
-      <RequestsListTable />
+      <RequestsListTable filteredRequirements={filteredRequirements} />
     </div>
 
   );
