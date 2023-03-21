@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Button, TextField, InputAdornment, FormControl, Select, MenuItem, InputLabel, Checkbox } from '@mui/material';
+import { Box, Typography, Container, Button, TextField, InputAdornment, FormControl, Select, MenuItem, InputLabel, Checkbox, FormHelperText } from '@mui/material';
 import CreateRequestCss from "./styles.module.css"
 import CreateRequestTable from '../CreateRequestTable/CreateRequestTable';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -14,6 +14,7 @@ import {
   createRequesterObject,
   createProductObject
 } from '../../../redux/createRequestSlice';
+import postCreateProduct from '../../../api/createRequest/postCreateProduct';
 function CreateRequest() {
   const { t } = useTranslation()
   const dispatch = useDispatch();
@@ -27,12 +28,15 @@ function CreateRequest() {
   const sectors = useSelector((state) => state.common.sectors)
   const businessPartners = useSelector((state) => state.common.businessPartners)
 
+  const createRequesterObjectBody = useSelector((state) => state.createRequest.createRequesterObjectBody)
+  const createProductObjectBody = useSelector((state) => state.createRequest.createProductObjectBody)
+
   // Values To Post
   const [requesterValuesToPost, setRequesterValuesToPost] = useState([])
   const [productValuesToPost, setProductValuesToPost] = useState([])
   // Button Disabilities
   const [addButtonDisabled, setAddButtonDisabled] = useState(true)
-  const [createButtonDisabled, setCreateAddButtonDisabled] = useState(true)
+  const [createButtonDisabled, setCreateButtonDisabled] = useState(true)
 
   // Requester Inputs
   const [name, setName] = useState("")
@@ -45,7 +49,7 @@ function CreateRequest() {
   // Product Inputs
   const [productName, setProductName] = useState("")
   const [productSector, setProductSector] = useState("")
-  const [productSubCategory, setProductSubCategory] = useState("")
+  // const [productSubCategory, setProductSubCategory] = useState("")
   const [quantity, setQuantity] = useState(0)
   const [price, setPrice] = useState(0)
   const [priceUnit, setPriceUnit] = useState("")
@@ -89,16 +93,16 @@ function CreateRequest() {
         setProductName(e.target.value)
         break;
       case 1:
-        setProductSector(e.target.value)
+        setProductSector(Number(e.target.value))
         break;
       case 2:
-        setQuantity(e.target.value)
+        setQuantity(Number(e.target.value))
         break;
       case 3:
         setMeasureUnit(e.target.value)
         break;
       case 4:
-        setPrice(e.target.value)
+        setPrice(Number(e.target.value))
         break;
       case 5:
         setPriceUnit(e.target.value)
@@ -113,7 +117,7 @@ function CreateRequest() {
         setDeliveryType(e.target.value)
         break;
       case 9:
-        setDeliveryCompany(e.target.value)
+        setDeliveryCompany(Number(e.target.value))
         break;
       case 10:
         setProductUrl(e.target.value)
@@ -158,6 +162,15 @@ function CreateRequest() {
   const handleAddProduct = () => {
     dispatch(createRequesterObject(requesterValuesToPost))
     dispatch(createProductObject(productValuesToPost))
+
+    // setRequesterValuesToPost([])
+    // setProductValuesToPost([])
+  }
+
+  const createRequestButton = () => {
+    createProductObjectBody?.map((productObject, index) => {
+      postCreateProduct(createRequesterObjectBody?.[index], productObject)
+    })
   }
 
   useEffect(() => {
@@ -179,6 +192,15 @@ function CreateRequest() {
       setAddButtonDisabled(false)
     }
   }, [requesterValuesToPost, productValuesToPost])
+
+  useEffect(() => {
+    if (createRequesterObjectBody.length > 0 && createProductObjectBody.length > 0) {
+      setCreateButtonDisabled(false)
+    }
+    else {
+      setCreateButtonDisabled(true)
+    }
+  }, [createRequesterObjectBody, createProductObjectBody])
 
 
   return (
@@ -207,20 +229,27 @@ function CreateRequest() {
                   el.type === "input" ?
                     <FormControl key={index} >
                       <TextField
+                        type={el.inputType}
                         error={!Object.values(requesterValuesToPost)[el.id]}
                         id="outlined-error-helper-text"
                         label={t(el.title)}
                         helperText={!Object.values(requesterValuesToPost)[el.id] ? t("PleaseFill") : ""}
                         style={{ width: index === 5 ? "700px" : "222px" }}
                         onChange={(e) => handleRequesterInputs(e, el.id)}
+                        inputProps={{
+                          min: "1",
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
                       />
                     </FormControl>
                     :
-                    <FormControl key={index} sx={{ width: "222px", margin: "8px" }}>
+                    <FormControl
+                      error={!Object.values(requesterValuesToPost)[el.id]}
+                      key={index} sx={{ width: "222px", margin: "8px" }}>
                       <InputLabel>{t(el.title)}</InputLabel>
                       <Select
-                        error={!Array(Object.values(requesterValuesToPost)[el.id])}
-                        helperText={!Object.values(requesterValuesToPost)[el.id] ? t("PleaseFill") : ""}
                         // value={age}
                         label={t(el.title)}
                         onChange={(e) => handleRequesterInputs(e, el.id)}
@@ -229,6 +258,7 @@ function CreateRequest() {
                         <MenuItem value={20}>Twenty</MenuItem>
                         <MenuItem value={30}>Thirty</MenuItem>
                       </Select>
+                      <FormHelperText>{!Object.values(requesterValuesToPost)[el.id] ? t("PleaseSelect") : ""}</FormHelperText>
                     </FormControl>
                 ))
               }
@@ -252,20 +282,28 @@ function CreateRequest() {
                   el.type === "input" ?
                     <FormControl key={el.id}>
                       <TextField
+                        type={el.inputType}
+                        // value={Object.values(productValuesToPost)[el.id]}
                         error={!Object.values(productValuesToPost)[el.id]}
                         id="outlined-error-helper-text"
                         label={t(el.title)}
                         helperText={!Object.values(productValuesToPost)[el.id] ? t("PleaseFill") : ""}
                         style={{ width: index === 0 ? "222px" : index === 10 ? "400px" : "163px" }}
                         onChange={(e) => handleProductInputs(e, el.id)}
+                        inputProps={{
+                          min: "1",
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
                       />
                     </FormControl>
                     :
-                    <FormControl key={el.id} sx={{ width: index === 5 ? "222px" : "163px", margin: "8px" }}>
+                    <FormControl
+                      error={!Object.values(productValuesToPost)[el.id]}
+                      key={el.id} sx={{ width: index === 5 ? "222px" : "163px", margin: "8px" }}>
                       <InputLabel>{t(el.title)}</InputLabel>
                       <Select
-                        error={!Object.values(productValuesToPost)[el.id]}
-                        helperText={!Object.values(productValuesToPost)[el.id] ? t("PleaseFill") : ""}
                         // value={age}
                         label={t(el.title)}
                         onChange={(e) => handleProductInputs(e, el.id)}
@@ -273,7 +311,7 @@ function CreateRequest() {
                         {
                           (sectors.length > 0 && el.id === 1) ?
                             sectors?.map(sector => {
-                              return <MenuItem key={sector?.id} value={sector?.code}>{t(sector?.code)}</MenuItem>
+                              return <MenuItem key={sector?.id} value={sector?.id}>{t(sector?.code)}</MenuItem>
                             })
                             :
                             (measureUnits.length > 0 && el.id === 3) ?
@@ -303,13 +341,14 @@ function CreateRequest() {
                                       :
                                       (businessPartners.length > 0 && el.id === 9) ?
                                         businessPartners?.map(partner => {
-                                          return <MenuItem key={partner?.id} value={partner?.name}>{t(partner?.name)}</MenuItem>
+                                          return <MenuItem key={partner?.id} value={partner?.id}>{t(partner?.name)}</MenuItem>
                                         })
                                         :
                                         <MenuItem value={""}>{""}</MenuItem>
 
                         }
                       </Select>
+                      <FormHelperText>{!Object.values(productValuesToPost)[el.id] ? t("PleaseSelect") : ""}</FormHelperText>
                     </FormControl>
                 ))
               }
@@ -341,7 +380,7 @@ function CreateRequest() {
       <Box className={CreateRequestCss.create_request_actions_container} style={{ marginTop: "20px", justifyContent: "flex-end", }}>
         <Button
           variant="contained"
-          // onClick={() => createRequestClick()}
+          onClick={() => createRequestButton()}
           disabled={createButtonDisabled}
           style={{
             backgroundColor: createButtonDisabled ? "#D7D7D7" : "#E1474A",

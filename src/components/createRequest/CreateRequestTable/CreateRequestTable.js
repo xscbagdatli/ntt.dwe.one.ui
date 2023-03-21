@@ -55,6 +55,9 @@ function LinearProgressWithLabel(props) {
 
 export default function CreateRequestTable() {
   const { t } = useTranslation()
+  const businessPartners = useSelector((state) => state.common.businessPartners)
+  const sectors = useSelector((state) => state.common.sectors)
+
   const createProductObjectBody = useSelector((state) => state.createRequest.createProductObjectBody)
 
   const [page, setPage] = useState(0)
@@ -84,7 +87,7 @@ export default function CreateRequestTable() {
           ).map((row, i) => (
             <StyledTableRow key={i}>
               <StyledTableCell align="right">{row.productName}</StyledTableCell>
-              <StyledTableCell align="right">{t(row?.productSector)}</StyledTableCell>
+              <StyledTableCell align="right">{t(sectors?.find(sector => sector.id === row.productSector).code)}</StyledTableCell>
               {/* <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell> */}
               <StyledTableCell align="right">{row.quantity}</StyledTableCell>
               <StyledTableCell align="right">{t(row.measureUnit)}</StyledTableCell>
@@ -93,7 +96,7 @@ export default function CreateRequestTable() {
               <StyledTableCell align="right">{t(row.purchaseType)}</StyledTableCell>
               <StyledTableCell align="right">{t(row.providingType)}</StyledTableCell>
               <StyledTableCell align="right">{t(row.deliveryType)}</StyledTableCell>
-              <StyledTableCell align="right">{row.deliveryCompany}</StyledTableCell>
+              <StyledTableCell align="right">{businessPartners?.find(partner => partner.id === row.deliveryCompany).name}</StyledTableCell>
               <StyledTableCell align="right">{row.productUrl}</StyledTableCell>
               <StyledTableCell align="right">{(row.isSpecialProduct ? t("Yes") : t("No"))}</StyledTableCell>
             </StyledTableRow>

@@ -63,4 +63,5 @@ export const translationsEn =
     VOUCHER: "Voucher",
     Sector: "Sector",
     ELECTRONIC: "Electronic",
+    PleaseSelect: "Please select."
 }

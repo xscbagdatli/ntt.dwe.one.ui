@@ -61,6 +61,7 @@ export const translationsTr =
     SINGLE: "Tekli",
     PRODUCT: "Ürün",
     VOUCHER: "Hediye Çeki",
-    Sector: "Sektör",
+    Sector: "Sektörü",
     ELECTRONIC: "Elektronik",
+    PleaseSelect: "Lütfen seçiniz."
 }

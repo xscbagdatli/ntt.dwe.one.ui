@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Link, TableFooter, TablePagination } from '@mui/material';
+import { Box, LinearProgress, Link, TableFooter, TablePagination, Typography } from '@mui/material';
 import {
   tableHeadCategories
 } from "../request-detail-data"
@@ -54,6 +54,20 @@ export default function RequestDetailTable() {
     setPage(newPage);
   };
 
+  function LinearProgressWithLabel(props) {
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ width: '100%', mr: 1 }}>
+          <LinearProgress variant="determinate" {...props} />
+        </Box>
+        <Box sx={{ minWidth: 35 }}>
+          <Typography variant="body2" color="text.secondary">{`${Math.round(
+            props.value,
+          )}%`}</Typography>
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: "30px" }}>
@@ -85,9 +99,8 @@ export default function RequestDetailTable() {
                 style={{ textTransform: "capitalize" }}
               >{row?.product.businessPartner.name.toLowerCase()}</StyledTableCell>
               <StyledTableCell align="right">{(row?.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
-              {/* <StyledTableCell align="right">{row?.url}</StyledTableCell> */}
-
               <StyledTableCell align="right">{row?.url}</StyledTableCell>
+              <StyledTableCell align="right">{<LinearProgressWithLabel value={row?.remainderQuantity / row?.quantity * 100} />}</StyledTableCell>
             </StyledTableRow>
           ))}
           {/* 

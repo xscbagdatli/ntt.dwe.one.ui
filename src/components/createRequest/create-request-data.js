@@ -3,37 +3,37 @@ export const requesterInputSpecs = [
         id: 0,
         title: "Name",
         type: "input",
-        width: "250px"
+        inputType: "text"
     },
     {
         id: 1,
         title: "EmployeeNo",
         type: "input",
-        width: "250px"
+        inputType: "number"
     },
     {
         id: 2,
         title: "GSM",
         type: "input",
-        width: "250px"
+        inputType: "tel"
     },
     {
         id: 3,
         title: "Email",
         type: "input",
-        width: "250px"
+        inputType: "email"
     },
     {
         id: 4,
         title: "ExpectedDeliveryDate",
-        type: "select",
-        width: "250px"
+        type: "input",
+        inputType: "date"
     },
     {
         id: 5,
         title: "Adress",
         type: "input",
-        width: "auto"
+        inputType: "adress"
     },
 ]
 
@@ -42,67 +42,67 @@ export const productInputSpecs = [
         id: 0,
         title: "Name",
         type: "input",
-        width: "250px"
+        inputType: "text"
     },
     {
         id: 1,
         title: "Sector",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 2,
         title: "Quantity",
         type: "input",
-        width: "250px"
+        inputType: "number"
     },
     {
         id: 3,
         title: "MeasureUnit",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 4,
         title: "Price",
         type: "input",
-        width: "250px"
+        inputType: "number"
     },
     {
         id: 5,
         title: "PriceUnit",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 6,
         title: "PurchaseType",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 7,
         title: "ProvidingType",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 8,
         title: "DeliveryType",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 9,
         title: "ProviderCompany",
         type: "select",
-        width: "250px"
+        inputType: ""
     },
     {
         id: 10,
         title: "Url",
         type: "input",
-        width: "250px"
+        inputType: "url"
     },
 ]
 
