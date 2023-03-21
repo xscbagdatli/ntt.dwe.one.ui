@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  selectedRequestItem: null,
+  selectedRequestItem: [],
 };
 
 export const requestDetailSlice = createSlice({

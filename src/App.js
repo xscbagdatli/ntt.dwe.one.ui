@@ -52,7 +52,7 @@ function App() {
             >
               <Routes>
                 <Route path="/" element={<Homepage />}></Route>
-                <Route path="home" element={<RequestsListPage />}></Route>
+                {/* <Route path="home" element={<RequestsListPage />}></Route> */}
                 <Route path="create-request" element={<CreateRequestPage />}></Route>
                 <Route path="requests-list" element={<RequestsListPage />}>
                   <Route index={true} element={<RequestsList />}></Route>

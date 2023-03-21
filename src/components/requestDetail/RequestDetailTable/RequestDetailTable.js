@@ -7,12 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { TableFooter, TablePagination } from '@mui/material';
+import { Link, TableFooter, TablePagination } from '@mui/material';
 import {
   tableHeadCategories
 } from "../request-detail-data"
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import LinkIcon from '@mui/icons-material/Link';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -23,7 +24,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
-    textAlign: "center"
+    textAlign: "center",
+
   },
 }));
 
@@ -39,6 +41,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function RequestDetailTable() {
   const { t } = useTranslation()
+
+  const requirements = useSelector((state) => state.requestsList.requirements)
+  const selectedRequestIndex = useSelector((state) => state.requestsList.selectedRequestIndex)
 
   const selectedRequestItem = useSelector((state) => state.requestDetail.selectedRequestItem)
 
@@ -69,16 +74,20 @@ export default function RequestDetailTable() {
             : selectedRequestItem
           ).map((row, i) => (
             <StyledTableRow key={i}>
-              <StyledTableCell align="right">{t(row.product.productGroup.code)}</StyledTableCell>
-              <StyledTableCell align="right">{row.product.unitPrice + " " + row.product.currency.code}</StyledTableCell>
-              <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-              <StyledTableCell align="right">{t(row.product.unitOfMeasure.code)}</StyledTableCell>
-              <StyledTableCell align="right">{row.purchaseType}</StyledTableCell>
-              <StyledTableCell align="right">{t(row.splitProfileStatus.code)}</StyledTableCell>
-              <StyledTableCell align="right">{t(row.deliveryType)}</StyledTableCell>
-              <StyledTableCell align="right">{row.product.businessPartner.name}</StyledTableCell>
-              <StyledTableCell align="right">{(row.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
-              <StyledTableCell align="right">{row.url}</StyledTableCell>
+              <StyledTableCell align="right">{t(row?.product.productGroup.code)}</StyledTableCell>
+              <StyledTableCell align="right">{row?.product.unitPrice + " " + row?.product.currency.code}</StyledTableCell>
+              <StyledTableCell align="right">{row?.quantity}</StyledTableCell>
+              <StyledTableCell align="right">{t(row?.product.unitOfMeasure.code)}</StyledTableCell>
+              <StyledTableCell align="right">{t(row?.product.productType.code)}</StyledTableCell>
+              <StyledTableCell align="right">{t(row?.splitProfileStatus.code)}</StyledTableCell>
+              <StyledTableCell align="right">{t(requirements?.[selectedRequestIndex]?.deliveryType.code)}</StyledTableCell>
+              <StyledTableCell align="right"
+                style={{ textTransform: "capitalize" }}
+              >{row?.product.businessPartner.name.toLowerCase()}</StyledTableCell>
+              <StyledTableCell align="right">{(row?.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
+              {/* <StyledTableCell align="right">{row?.url}</StyledTableCell> */}
+
+              <StyledTableCell align="right">{row?.url}</StyledTableCell>
             </StyledTableRow>
           ))}
           {/* 

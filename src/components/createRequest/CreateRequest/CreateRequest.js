@@ -22,10 +22,17 @@ function CreateRequest() {
   const priceUnits = useSelector((state) => state.common.priceUnits)
   const measureUnits = useSelector((state) => state.common.measureUnits)
   const deliveryTypes = useSelector((state) => state.common.deliveryTypes)
+  const productTypes = useSelector((state) => state.common.productTypes)
+  const splitProfileStatuses = useSelector((state) => state.common.splitProfileStatuses)
+  const sectors = useSelector((state) => state.common.sectors)
+  const businessPartners = useSelector((state) => state.common.businessPartners)
 
   // Values To Post
   const [requesterValuesToPost, setRequesterValuesToPost] = useState([])
   const [productValuesToPost, setProductValuesToPost] = useState([])
+  // Button Disabilities
+  const [addButtonDisabled, setAddButtonDisabled] = useState(true)
+  const [createButtonDisabled, setCreateAddButtonDisabled] = useState(true)
 
   // Requester Inputs
   const [name, setName] = useState("")
@@ -36,8 +43,8 @@ function CreateRequest() {
   const [adress, setAdress] = useState("")
 
   // Product Inputs
-  const [productname, setProductName] = useState("")
-  const [productCategory, setProductCategory] = useState("")
+  const [productName, setProductName] = useState("")
+  const [productSector, setProductSector] = useState("")
   const [productSubCategory, setProductSubCategory] = useState("")
   const [quantity, setQuantity] = useState(0)
   const [price, setPrice] = useState(0)
@@ -47,8 +54,8 @@ function CreateRequest() {
   const [providingType, setProvidingType] = useState("")
   const [deliveryType, setDeliveryType] = useState("")
   const [deliveryCompany, setDeliveryCompany] = useState("")
-  const [productUrl, setProductUrl] = useState("")
   const [isSpecialProduct, setIsSpecialProduct] = useState(false)
+  const [productUrl, setProductUrl] = useState("")
 
   const handleRequesterInputs = (e, id) => {
     switch (id) {
@@ -82,31 +89,39 @@ function CreateRequest() {
         setProductName(e.target.value)
         break;
       case 1:
-        setQuantity(e.target.value)
+        setProductSector(e.target.value)
         break;
       case 2:
-        setPrice(e.target.value)
+        setQuantity(e.target.value)
         break;
       case 3:
-        setPriceUnit(e.target.value)
-        break;
-      case 4:
         setMeasureUnit(e.target.value)
         break;
+      case 4:
+        setPrice(e.target.value)
+        break;
       case 5:
-        setPurchaseType(e.target.value)
+        setPriceUnit(e.target.value)
         break;
       case 6:
-        setProvidingType(e.target.value)
+        setPurchaseType(e.target.value)
         break;
       case 7:
-        setDeliveryType(e.target.value)
+        setProvidingType(e.target.value)
         break;
       case 8:
+        setDeliveryType(e.target.value)
+        break;
+      case 9:
+        setDeliveryCompany(e.target.value)
+        break;
+      case 10:
         setProductUrl(e.target.value)
         break;
-      default:
+      case 11:
         setIsSpecialProduct(!isSpecialProduct)
+        break;
+      default:
         break;
     }
   }
@@ -124,9 +139,9 @@ function CreateRequest() {
 
   useEffect(() => {
     setProductValuesToPost({
-      productname,
-      productCategory,
-      productSubCategory,
+      productName,
+      productSector,
+      // productSubCategory,
       quantity,
       measureUnit,
       price,
@@ -135,15 +150,36 @@ function CreateRequest() {
       providingType,
       deliveryType,
       deliveryCompany,
+      productUrl,
       isSpecialProduct,
-      productUrl
     })
-  }, [productname, productCategory, productSubCategory, quantity, measureUnit, price, priceUnit, purchaseType, providingType, deliveryType, deliveryCompany, isSpecialProduct, productUrl])
+  }, [productName, productSector, quantity, measureUnit, price, priceUnit, purchaseType, providingType, deliveryType, deliveryCompany, productUrl, isSpecialProduct])
 
   const handleAddProduct = () => {
     dispatch(createRequesterObject(requesterValuesToPost))
     dispatch(createProductObject(productValuesToPost))
   }
+
+  useEffect(() => {
+    let filteredRequesterValuesToPost = []
+    let filteredProductValuesToPost = []
+
+    filteredRequesterValuesToPost = Object.values(requesterValuesToPost)?.filter(value => {
+      return !value
+    })
+
+    filteredProductValuesToPost = Object.values(productValuesToPost)?.filter((value, index) => {
+      return index !== 11 && !value
+    })
+
+    if (filteredRequesterValuesToPost?.length > 0 || filteredProductValuesToPost?.length > 0) {
+      setAddButtonDisabled(true)
+    }
+    else {
+      setAddButtonDisabled(false)
+    }
+  }, [requesterValuesToPost, productValuesToPost])
+
 
   return (
     <div className={CreateRequestCss.create_request_container}>
@@ -181,12 +217,10 @@ function CreateRequest() {
                     </FormControl>
                     :
                     <FormControl key={index} sx={{ width: "222px", margin: "8px" }}>
-                      <InputLabel id="demo-simple-select-label">{t(el.title)}</InputLabel>
+                      <InputLabel>{t(el.title)}</InputLabel>
                       <Select
                         error={!Array(Object.values(requesterValuesToPost)[el.id])}
                         helperText={!Object.values(requesterValuesToPost)[el.id] ? t("PleaseFill") : ""}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
                         // value={age}
                         label={t(el.title)}
                         onChange={(e) => handleRequesterInputs(e, el.id)}
@@ -212,7 +246,7 @@ function CreateRequest() {
             autoComplete="off"
             bgcolor="#FFF"
           >
-            <Box padding="24px" paddingBottom="unset">
+            <Box padding="24px">
               {
                 productInputSpecs?.map((el, index) => (
                   el.type === "input" ?
@@ -222,7 +256,7 @@ function CreateRequest() {
                         id="outlined-error-helper-text"
                         label={t(el.title)}
                         helperText={!Object.values(productValuesToPost)[el.id] ? t("PleaseFill") : ""}
-                        style={{ width: index === 0 ? "222px" : index === 8 ? "345px" : "163px" }}
+                        style={{ width: index === 0 ? "222px" : index === 10 ? "400px" : "163px" }}
                         onChange={(e) => handleProductInputs(e, el.id)}
                       />
                     </FormControl>
@@ -237,24 +271,42 @@ function CreateRequest() {
                         onChange={(e) => handleProductInputs(e, el.id)}
                       >
                         {
-                          (priceUnits.length > 0 && el.id === 3) ?
-                            priceUnits?.map(unit => {
-                              if (unit.languageId?.toLowerCase() === i18n.language) {
-                                return <MenuItem key={unit?.id} value={unit?.objectId}>{unit?.objectId}</MenuItem>
-                              }
+                          (sectors.length > 0 && el.id === 1) ?
+                            sectors?.map(sector => {
+                              return <MenuItem key={sector?.id} value={sector?.code}>{t(sector?.code)}</MenuItem>
                             })
                             :
-                            (measureUnits.length > 0 && el.id === 4) ?
+                            (measureUnits.length > 0 && el.id === 3) ?
                               measureUnits?.map(unit => {
                                 return <MenuItem key={unit?.text.id} value={unit?.text.objectId}>{t(unit?.text.objectId)}</MenuItem>
                               })
                               :
-                              (deliveryTypes.length > 0 && el.id === 7) ?
-                                deliveryTypes?.map(unit => {
-                                  return <MenuItem key={unit?.text.id} value={unit?.text.objectId}>{t(unit?.text.objectId)}</MenuItem>
+                              (priceUnits.length > 0 && el.id === 5) ?
+                                priceUnits?.map(unit => {
+                                  return <MenuItem key={unit?.id} value={unit?.code}>{unit?.code}</MenuItem>
                                 })
                                 :
-                                <MenuItem value={""}>{""}</MenuItem>
+                                (productTypes.length > 0 && el.id === 6) ?
+                                  productTypes?.map(type => {
+                                    return <MenuItem key={type?.text.id} value={type?.text.objectId}>{t(type?.text.objectId)}</MenuItem>
+                                  })
+                                  :
+                                  (splitProfileStatuses.length > 0 && el.id === 7) ?
+                                    splitProfileStatuses?.map(status => {
+                                      return <MenuItem key={status?.text.id} value={status?.text.objectId}>{t(status?.text.objectId)}</MenuItem>
+                                    })
+                                    :
+                                    (deliveryTypes.length > 0 && el.id === 8) ?
+                                      deliveryTypes?.map(type => {
+                                        return <MenuItem key={type?.text.id} value={type?.text.objectId}>{t(type?.text.objectId)}</MenuItem>
+                                      })
+                                      :
+                                      (businessPartners.length > 0 && el.id === 9) ?
+                                        businessPartners?.map(partner => {
+                                          return <MenuItem key={partner?.id} value={partner?.name}>{t(partner?.name)}</MenuItem>
+                                        })
+                                        :
+                                        <MenuItem value={""}>{""}</MenuItem>
 
                         }
                       </Select>
@@ -265,10 +317,19 @@ function CreateRequest() {
           </Box>
         </div>
         <Box className={CreateRequestCss.create_request_actions_container}>
-          <FormControlLabel control={<Checkbox onChange={(e) => handleProductInputs(e)} />} label={t("SpecialProduct")} />
+          <FormControlLabel control={<Checkbox onChange={(e) => handleProductInputs(e, 11)} />} label={t("SpecialProduct")} />
           <Button
             onClick={() => handleAddProduct()}
-            variant="contained" style={{ backgroundColor: "#E1474A", borderRadius: "36px", textTransform: "capitalize" }}>{t("AddProduct")}</Button>
+            disabled={addButtonDisabled}
+            variant="contained"
+            style={{
+              backgroundColor: addButtonDisabled ? "" : "#E1474A",
+              color: "#FFF",
+              borderRadius: "36px",
+              textTransform: "capitalize"
+            }}>
+            {t("AddProduct")}
+          </Button>
         </Box>
       </div>
       <Box
@@ -278,7 +339,19 @@ function CreateRequest() {
 
       </Box>
       <Box className={CreateRequestCss.create_request_actions_container} style={{ marginTop: "20px", justifyContent: "flex-end", }}>
-        <Button variant="contained" style={{ backgroundColor: "#E1474A", borderRadius: "36px", textTransform: "capitalize" }}>{t("CreateRequest")}</Button>
+        <Button
+          variant="contained"
+          // onClick={() => createRequestClick()}
+          disabled={createButtonDisabled}
+          style={{
+            backgroundColor: createButtonDisabled ? "#D7D7D7" : "#E1474A",
+            color: "#FFF",
+            borderRadius: "36px",
+            textTransform: "capitalize"
+          }}
+        >
+          {t("CreateRequest")}
+        </Button>
       </Box>
     </div>
 

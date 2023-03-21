@@ -58,5 +58,9 @@ export const translationsEn =
     UnitPrice: "Unit Price",
     HOMEAPPLIANCES: "Home Appliances",
     MULTI: "Multi",
-    SINGLE: "Single"
+    SINGLE: "Single",
+    PRODUCT: "Product",
+    VOUCHER: "Voucher",
+    Sector: "Sector",
+    ELECTRONIC: "Electronic",
 }

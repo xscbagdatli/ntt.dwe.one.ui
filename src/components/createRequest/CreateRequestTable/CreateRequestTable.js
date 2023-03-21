@@ -38,45 +38,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(
-//   requestNo,
-//   expectedDeliveryDate,
-//   title,
-//   statusId,
-//   progress,
-//   a,
-//   b,
-//   c,
-//   d,
-//   e,
-//   f,
-//   g,
-// ) {
-//   return { requestNo, expectedDeliveryDate, title, statusId, progress, a, b, c, d, e, f, g };
-// }
-
-// const rows = [
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 50, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 25, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 15, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 35, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 1, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 3, 40, 1, 2, 3, 4, 5, 6, 7),
-//   createData('#7353967', "07/10/2023", "Elektronik", 2, 40, 1, 2, 3, 4, 5, 6, 7),
-// ];
-
 function LinearProgressWithLabel(props) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -122,19 +83,19 @@ export default function CreateRequestTable() {
             : createProductObjectBody
           ).map((row, i) => (
             <StyledTableRow key={i}>
-              <StyledTableCell align="right">{row.productname}</StyledTableCell>
-              <StyledTableCell align="right">{row?.productCategory}</StyledTableCell>
-              <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell>
+              <StyledTableCell align="right">{row.productName}</StyledTableCell>
+              <StyledTableCell align="right">{t(row?.productSector)}</StyledTableCell>
+              {/* <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell> */}
               <StyledTableCell align="right">{row.quantity}</StyledTableCell>
               <StyledTableCell align="right">{t(row.measureUnit)}</StyledTableCell>
               <StyledTableCell align="right">{row.price}</StyledTableCell>
               <StyledTableCell align="right">{row.priceUnit}</StyledTableCell>
-              <StyledTableCell align="right">{row.purchaseType}</StyledTableCell>
-              <StyledTableCell align="right">{row.providingType}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.purchaseType)}</StyledTableCell>
+              <StyledTableCell align="right">{t(row.providingType)}</StyledTableCell>
               <StyledTableCell align="right">{t(row.deliveryType)}</StyledTableCell>
               <StyledTableCell align="right">{row.deliveryCompany}</StyledTableCell>
-              <StyledTableCell align="right">{(row.isSpecialProduct ? t("Yes") : t("No"))}</StyledTableCell>
               <StyledTableCell align="right">{row.productUrl}</StyledTableCell>
+              <StyledTableCell align="right">{(row.isSpecialProduct ? t("Yes") : t("No"))}</StyledTableCell>
             </StyledTableRow>
           ))}
           {/* 

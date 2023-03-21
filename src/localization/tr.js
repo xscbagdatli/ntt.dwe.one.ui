@@ -58,5 +58,9 @@ export const translationsTr =
     UnitPrice: "Birim Fiyat",
     HOMEAPPLIANCES: "Ev Aletleri",
     MULTI: "Çoklu",
-    SINGLE: "Tekli"
+    SINGLE: "Tekli",
+    PRODUCT: "Ürün",
+    VOUCHER: "Hediye Çeki",
+    Sector: "Sektör",
+    ELECTRONIC: "Elektronik",
 }

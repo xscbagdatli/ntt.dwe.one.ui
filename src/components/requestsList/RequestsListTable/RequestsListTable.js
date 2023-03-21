@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { store } from '../../../redux/store';
 import { selectedRequestIndex } from '../../../redux/requestsListSlice';
 import { Link } from 'react-router-dom';
+import fetchRequirementItem from '../../../api/requestDetail/fetchRequirementItem';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -102,8 +103,8 @@ export default function RequestsListTable() {
     return formattedDate.toLocaleDateString()
   };
 
-  const handleSelectedRequest = (index) => {
-    store.dispatch(selectedRequestIndex(index))
+  const handleSelectedRequest = (requestId) => {
+    store.dispatch(selectedRequestIndex(requestId))
   };
 
   return (
@@ -135,7 +136,7 @@ export default function RequestsListTable() {
               <StyledTableCell align="right">
                 <Link to={`request-detail/${row?.id}`}>
                   <Box
-                    onClick={() => handleSelectedRequest(index)}
+                    onClick={() => handleSelectedRequest(row?.id)}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#E1474A", borderRadius: "8px", width: "115px",
                       height: "32px",

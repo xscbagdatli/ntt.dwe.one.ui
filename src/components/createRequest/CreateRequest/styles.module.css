@@ -27,5 +27,5 @@
 }
 
 .create_request_actions_container {
-    @apply p-[24px] pt-[unset] flex items-center justify-between
+    @apply p-[24px] pt-[unset] mt-[20px] flex items-center justify-between
 }

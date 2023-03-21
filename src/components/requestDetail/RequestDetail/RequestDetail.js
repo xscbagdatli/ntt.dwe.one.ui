@@ -23,15 +23,15 @@ function RequestDetail() {
   const [responsibleEmail, setResponsibleEmail] = useState("")
 
   useEffect(() => {
-    setRequestNo(requirements?.[selectedRequestIndex].id)
-    setRequestTitle(requirements?.[selectedRequestIndex].requestName)
-    setResponsibleName(requirements?.[selectedRequestIndex].responsibleHrbpName)
-    setResponsibleEmail(requirements?.[selectedRequestIndex].responsibleHrbpEmail)
+    setRequestNo(requirements?.[selectedRequestIndex]?.id)
+    setRequestTitle(requirements?.[selectedRequestIndex]?.requestName)
+    setResponsibleName(requirements?.[selectedRequestIndex]?.responsibleHrbpName)
+    setResponsibleEmail(requirements?.[selectedRequestIndex]?.responsibleHrbpEmail)
   }, [requirements, selectedRequestIndex])
 
   useEffect(() => {
     if (requirements.length > 0 && selectedRequestIndex !== null) {
-      fetchRequirementItem(requirements?.[selectedRequestIndex].id)
+      fetchRequirementItem(selectedRequestIndex)
     }
   }, [requirements, selectedRequestIndex])
 
