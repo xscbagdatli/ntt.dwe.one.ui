@@ -105,51 +105,38 @@ export const tableHeadCategories = [
     },
     {
         id: 2,
-        title: "ProductSector",
+        title: "UnitPrice",
     },
     {
         id: 3,
-        title: "ProductSector",
-    },
-    {
-        id: 4,
         title: "ProductQuantity",
     },
     {
-        id: 5,
+        id: 4,
         title: "MeasureUnit",
     },
     {
-        id: 6,
-        title: "ProductPrice",
-    },
-    {
-        id: 7,
-        title: "PriceUnit",
-    },
-
-    {
-        id: 8,
+        id: 5,
         title: "PurchaseType",
     },
     {
-        id: 9,
+        id: 6,
         title: "ProvidingType",
     },
     {
-        id: 10,
+        id: 7,
         title: "DeliveryType",
     },
     {
-        id: 11,
+        id: 8,
         title: "ProviderCompany",
     },
     {
-        id: 12,
+        id: 9,
         title: "SpecialProduct",
     },
     {
-        id: 13,
+        id: 10,
         title: "Url",
     },
 

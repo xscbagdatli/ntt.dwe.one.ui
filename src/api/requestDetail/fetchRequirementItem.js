@@ -1,4 +1,5 @@
 import { selectedRequestItem } from "../../redux/requestDetailSlice";
+import { providedRequestItem } from "../../redux/providedRequestsSlice";
 import { store } from "../../redux/store";
 import { BASE_URL } from "../../Enums"
 
@@ -12,7 +13,9 @@ async function fetchRequirementItem(requirementId) {
             throw new Error(message);
         }
         const requests = await response.json();
+
         store.dispatch(selectedRequestItem(requests.result.data))
+        store.dispatch(providedRequestItem(requests.result.data))
         return requests.result.data;
     }
     catch (error) {

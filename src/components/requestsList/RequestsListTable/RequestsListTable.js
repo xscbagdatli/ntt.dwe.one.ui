@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { store } from '../../../redux/store';
 import { selectedRequestIndex } from '../../../redux/requestsListSlice';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../../../helpers/formatDate';
 // import fetchRequirementItem from '../../../api/requestDetail/fetchRequirementItem';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -94,11 +95,6 @@ export default function RequestsListTable({
     if (statusId === "VERIFIED") {
       return "info"
     }
-  };
-
-  const formatDate = (date) => {
-    const formattedDate = new Date(date)
-    return formattedDate.toLocaleDateString()
   };
 
   const handleSelectedRequest = (requestId) => {

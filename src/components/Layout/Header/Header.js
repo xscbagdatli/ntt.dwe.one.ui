@@ -45,9 +45,9 @@ export default function Header({
             <Box
                 padding="20px 0 20px 50px"
             >
-                <Link href="/" underline="none" color="unset" fontSize="22px">
+                <RouteLink to="/" underline="none" color="unset" fontSize="22px">
                     <img src='/one-heart-logo.png' alt='logo' />
-                </Link>
+                </RouteLink>
             </Box>
             {/* <Box style={{ display: "flex" }}>
                 

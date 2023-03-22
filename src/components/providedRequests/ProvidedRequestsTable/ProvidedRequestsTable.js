@@ -13,6 +13,7 @@ import {
 } from "../provided-requests-data.js"
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { formatDate } from '../../../helpers/formatDate.js';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,16 +38,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function ProvidedRequestsTable() {
+export default function ProvidedRequestsTable({
+  item
+}) {
+
   const { t } = useTranslation()
-  const createProductObjectBody = useSelector((state) => state.createRequest.createProductObjectBody)
 
-  const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(2)
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  const requirementWithId = useSelector((state) => state.requestsList.requirementWithId)
 
   return (
     <TableContainer component={Paper} sx={{ marginTop: "30px" }}>
@@ -62,27 +60,21 @@ export default function ProvidedRequestsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(rowsPerPage > 0
-            ? createProductObjectBody?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : createProductObjectBody
-          ).map((row, i) => (
-            <StyledTableRow key={i}>
-              <StyledTableCell align="right">{row.expectedDeliveryDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.productname}</StyledTableCell>
-              <StyledTableCell align="right">{row?.productCategory}</StyledTableCell>
-              <StyledTableCell align="right">{row?.productSubCategory}</StyledTableCell>
-              <StyledTableCell align="right">{row.quantity}</StyledTableCell>
-              <StyledTableCell align="right">{t(row.measureUnit)}</StyledTableCell>
-              <StyledTableCell align="right">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{row.priceUnit}</StyledTableCell>
-              <StyledTableCell align="right">{row.purchaseType}</StyledTableCell>
-              <StyledTableCell align="right">{row.providingType}</StyledTableCell>
-              <StyledTableCell align="right">{t(row.deliveryType)}</StyledTableCell>
-              <StyledTableCell align="right">{row.deliveryCompany}</StyledTableCell>
-              <StyledTableCell align="right">{(row.isSpecialProduct ? t("Yes") : t("No"))}</StyledTableCell>
-              <StyledTableCell align="right">{row.productUrl}</StyledTableCell>
-            </StyledTableRow>
-          ))}
+          <StyledTableRow>
+            <StyledTableCell align="right">{formatDate(requirementWithId?.plannedDeliveryDate)}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.product.productGroup.code)}</StyledTableCell>
+            <StyledTableCell align="right">{item?.product.unitPrice + " " + item?.product.currency.code}</StyledTableCell>
+            <StyledTableCell align="right">{item?.quantity}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.product.unitOfMeasure.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.product.productType.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.splitProfileStatus.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(requirementWithId?.deliveryType.code)}</StyledTableCell>
+            <StyledTableCell align="right"
+              style={{ textTransform: "capitalize" }}
+            >{item?.product.businessPartner.name.toLowerCase()}</StyledTableCell>
+            <StyledTableCell align="right">{(item?.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
+            <StyledTableCell align="right">{item?.url}</StyledTableCell>
+          </StyledTableRow>
           {/* 
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
@@ -90,7 +82,7 @@ export default function ProvidedRequestsTable() {
             </TableRow>
           )} */}
         </TableBody>
-        <TableFooter>
+        {/* <TableFooter>
           <TablePagination
             rowsPerPageOptions={[]}
             colSpan={3}
@@ -102,7 +94,7 @@ export default function ProvidedRequestsTable() {
           // ActionsComponent={TablePaginationActions}
           />
 
-        </TableFooter>
+        </TableFooter> */}
       </Table>
     </TableContainer >
   );

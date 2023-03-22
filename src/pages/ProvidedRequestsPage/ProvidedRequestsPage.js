@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProvidedRequestsPageCss from './styles.module.css';
 
 // Components
 import ProvidedRequests from '../../components/providedRequests/ProvidedRequests/ProvidedRequests';
+import fetchCommitments from '../../api/providedRequests/fetchCommitments';
 
-function ProvidedRequestsPage
-  () {
+function ProvidedRequestsPage() {
+
+  useEffect(() => {
+    fetchCommitments()
+  }, [])
 
   return (
     <div className={ProvidedRequestsPageCss.content_container}>

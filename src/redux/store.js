@@ -5,6 +5,7 @@ import createRequestSliceReducer from './createRequestSlice';
 import commonSliceReducer from './commonSlice';
 import requestsListSlice from './requestsListSlice';
 import requestDetailSlice from './requestDetailSlice';
+import providedRequestsSlice from './providedRequestsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     createRequest: createRequestSliceReducer,
     requestsList: requestsListSlice,
     requestDetail: requestDetailSlice,
+    providedRequests: providedRequestsSlice,
   },
 });
