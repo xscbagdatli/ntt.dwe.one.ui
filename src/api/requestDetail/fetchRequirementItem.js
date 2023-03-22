@@ -1,5 +1,6 @@
 import { selectedRequestItem } from "../../redux/requestDetailSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 
 
 async function fetchRequirementItem(requirementId) {

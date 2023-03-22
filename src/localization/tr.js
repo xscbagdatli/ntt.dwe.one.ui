@@ -3,6 +3,8 @@ export const translationsTr =
     HeaderTitle: "Kalbimiz ve Desteklerimiz Deprem Bölgesinde!",
     HeaderDescription: "Ülkemizin yaşadığı büyük doğal afetin ilk anından itibaren, kalplerimiz afetten etkilenen arkadaşlarımız ve yakınları için atıyor.<br><br>one Heart Dayanışma Platformumuz aracılığıyla, depremdem etkilenen çalışma arkadaşlarımız ve yakınlarının yaşamlarını yeniden kurmaları için onlara el uzatabilir, ihtiyaçlarının giderilmesine destek olabilirsiniz.<br><br>Platform ve sürece dair tüm soru, öneri ve geri bildirimlerinizi <strong> Çalışan Deneyimi Ekibi (pxp-solutions-TR@bs.nttdata.com) </strong> ile iletişime geçerek paylaşabilirsiniz.",
     Help: "Yardım",
+    Date: "Tarih",
+    Filter: "Filtre",
     Filters: "Filtreler",
     RequestsList: "Talep Listesi",
     RequestDetail: "Talep Detayı",
@@ -63,5 +65,8 @@ export const translationsTr =
     VOUCHER: "Hediye Çeki",
     Sector: "Sektörü",
     ELECTRONIC: "Elektronik",
-    PleaseSelect: "Lütfen seçiniz."
+    PleaseSelect: "Lütfen seçiniz.",
+    Cancel: "İptal",
+    Apply: "Uygula",
+    ClearFilter: "Filtreyi Temizle",
 }

@@ -11,6 +11,7 @@ import fetchRequirementSummary from '../../api/homepage/fetchRequirementSummary'
 import fetchProductTypes from '../../api/common/fetchProductTypes';
 import fetchSplitProfileStatuses from '../../api/common/fetchSplitProfileStatuses';
 import fetchSectors from '../../api/common/fetchSectors';
+import fetchRequirementStatuses from '../../api/common/fetchRequirementStatuses';
 
 function Layout() {
     useEffect(() => {
@@ -22,6 +23,7 @@ function Layout() {
         fetchProductTypes()
         fetchSplitProfileStatuses()
         fetchSectors()
+        fetchRequirementStatuses()
     }, [])
 
     return (

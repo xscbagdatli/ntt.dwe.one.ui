@@ -1,11 +1,12 @@
 import { measureUnits } from "../../redux/commonSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 
 
 async function fetchMeasureUnits() {
     try {
 
-        const response = await fetch('https://one-heart-api-dev.azurewebsites.net/api/unit-of-measure');
+        const response = await fetch(BASE_URL + 'api/unit-of-measure');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;

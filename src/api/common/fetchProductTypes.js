@@ -1,10 +1,11 @@
 import { productTypes } from "../../redux/commonSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 
 
 async function fetchProductTypes() {
     try {
-        const response = await fetch('https://one-heart-api-dev.azurewebsites.net/api/product-type');
+        const response = await fetch(BASE_URL + 'api/product-type');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;

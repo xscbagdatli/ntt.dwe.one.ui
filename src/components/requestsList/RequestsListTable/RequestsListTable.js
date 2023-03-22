@@ -61,12 +61,12 @@ export default function RequestsListTable({
 
   const requirements = useSelector((state) => state.requestsList.requirements)
 
-  const [requirementsForTable, setRequirementsForTable] = useState([])
+  const [requirementsForTable, setRequirementsForTable] = useState(null)
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
   useEffect(() => {
-    if (filteredRequirements?.length > 0) {
+    if (filteredRequirements) {
       setRequirementsForTable(filteredRequirements)
     }
     else {
@@ -106,69 +106,76 @@ export default function RequestsListTable({
   };
 
   return (
-    <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
-      <Table sx={{ minWidth: 700, minHeight: 440 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>{t("RequestNo")}</StyledTableCell>
-            <StyledTableCell align="right">{t("ExpectedDeliveryDate")}</StyledTableCell>
-            <StyledTableCell align="right">{t("RequestTitle")}</StyledTableCell>
-            <StyledTableCell align="right">{t("Status")}</StyledTableCell>
-            <StyledTableCell align="right">{t("ProvidingRatio")}</StyledTableCell>
-            <StyledTableCell align="right"></StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? requirementsForTable?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : requirementsForTable
-          ).map((row, index) => (
-            <StyledTableRow key={index}>
-              <StyledTableCell component="th" scope="row">
-                {`#${row?.id}`}
-              </StyledTableCell>
-              <StyledTableCell align="right">{formatDate(row?.plannedDeliveryDate)}</StyledTableCell>
-              <StyledTableCell align="right">{row?.requestName}</StyledTableCell>
-              <StyledTableCell align="right">{<Chip label={t(row?.requirementStatus.code)} color={statusStyles(row?.requirementStatus.id)} />}</StyledTableCell>
-              <StyledTableCell align="right">{<LinearProgressWithLabel value={0} />}</StyledTableCell>
-              <StyledTableCell align="right">
-                <Link to={`request-detail/${row?.id}`}>
-                  <Box
-                    onClick={() => handleSelectedRequest(row?.id)}
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#E1474A", borderRadius: "8px", width: "115px",
-                      height: "32px",
-                      cursor: "pointer",
-                      color: "#FFFFFF"
-                    }}>
-                    {t("GoToDetail")}
-                    <ArrowForwardIcon />
-                  </Box>
-                </Link>
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-          {/* 
+    <>
+      {
+        requirementsForTable && requirementsForTable?.length === 0 ?
+          "Filtreye uygun sonuç bulunamadı."
+          :
+          <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
+            <Table sx={{ minWidth: 700, minHeight: 440 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>{t("RequestNo")}</StyledTableCell>
+                  <StyledTableCell align="right">{t("ExpectedDeliveryDate")}</StyledTableCell>
+                  <StyledTableCell align="right">{t("RequestTitle")}</StyledTableCell>
+                  <StyledTableCell align="right">{t("Status")}</StyledTableCell>
+                  <StyledTableCell align="right">{t("ProvidingRatio")}</StyledTableCell>
+                  <StyledTableCell align="right"></StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {(rowsPerPage > 0
+                  ? requirementsForTable?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  : requirementsForTable
+                )?.map((row, index) => (
+                  <StyledTableRow key={index}>
+                    <StyledTableCell component="th" scope="row">
+                      {`#${row?.id}`}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">{formatDate(row?.plannedDeliveryDate)}</StyledTableCell>
+                    <StyledTableCell align="right">{row?.requestName}</StyledTableCell>
+                    <StyledTableCell align="right">{<Chip label={t(row?.requirementStatus.code)} color={statusStyles(row?.requirementStatus.id)} />}</StyledTableCell>
+                    <StyledTableCell align="right">{<LinearProgressWithLabel value={0} />}</StyledTableCell>
+                    <StyledTableCell align="right">
+                      <Link to={`request-detail/${row?.id}`}>
+                        <Box
+                          onClick={() => handleSelectedRequest(row?.id)}
+                          style={{
+                            display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#E1474A", borderRadius: "8px", width: "115px",
+                            height: "32px",
+                            cursor: "pointer",
+                            color: "#FFFFFF"
+                          }}>
+                          {t("GoToDetail")}
+                          <ArrowForwardIcon />
+                        </Box>
+                      </Link>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+                {/* 
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
             </TableRow>
           )} */}
-        </TableBody>
-        <TableFooter>
-          <TablePagination
-            rowsPerPageOptions={[]}
-            colSpan={3}
-            count={requirementsForTable?.length}
-            rowsPerPage={5}
-            page={page}
-            onPageChange={handleChangePage}
-          // onRowsPerPageChange={handleChangeRowsPerPage}
-          // ActionsComponent={TablePaginationActions}
-          />
+              </TableBody>
+              <TableFooter>
+                <TablePagination
+                  rowsPerPageOptions={[]}
+                  colSpan={3}
+                  count={requirementsForTable?.length}
+                  rowsPerPage={5}
+                  page={page}
+                  onPageChange={handleChangePage}
+                // onRowsPerPageChange={handleChangeRowsPerPage}
+                // ActionsComponent={TablePaginationActions}
+                />
 
-        </TableFooter>
-      </Table>
-    </TableContainer >
+              </TableFooter>
+            </Table>
+          </TableContainer >
+      }
+    </>
   );
 }

@@ -1,10 +1,11 @@
 import { requirements } from "../../redux/requestsListSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 
 
 async function fetchRequirements() {
     try {
-        const response = await fetch('https://one-heart-api-dev.azurewebsites.net/api/requirement');
+        const response = await fetch(BASE_URL + 'api/requirement');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;

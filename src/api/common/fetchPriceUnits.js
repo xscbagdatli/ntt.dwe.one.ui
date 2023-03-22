@@ -1,10 +1,11 @@
 import { priceUnits } from "../../redux/commonSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 
 
 async function fetchPriceUnits() {
     try {
-        const response = await fetch('https://one-heart-api-dev.azurewebsites.net/api/currency');
+        const response = await fetch(BASE_URL + 'api/currency');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;

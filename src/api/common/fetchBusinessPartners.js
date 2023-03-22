@@ -1,11 +1,12 @@
 import { businessPartners } from "../../redux/commonSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 
 
 async function fetchBusinessPartners() {
     try {
 
-        const response = await fetch('https://one-heart-api-dev.azurewebsites.net/api/business-partner');
+        const response = await fetch(BASE_URL + 'api/business-partner');
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;

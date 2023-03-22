@@ -8,6 +8,7 @@ const initialState = {
   productTypes: [],
   splitProfileStatuses: [],
   sectors: [],
+  requirementStatuses: [],
 };
 
 export const commonSlice = createSlice({
@@ -36,6 +37,9 @@ export const commonSlice = createSlice({
     sectors: (state, action) => {
       state.sectors = action.payload;
     },
+    requirementStatuses: (state, action) => {
+      state.requirementStatuses = action.payload;
+    },
   },
 });
 
@@ -47,7 +51,8 @@ export const {
   businessPartners,
   productTypes,
   splitProfileStatuses,
-  sectors
+  sectors,
+  requirementStatuses
 } = commonSlice.actions;
 
 export default commonSlice.reducer;

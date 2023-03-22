@@ -1,5 +1,6 @@
 import { sectors } from "../../redux/commonSlice";
 import { store } from "../../redux/store";
+import { BASE_URL } from "../../Enums"
 import postCreateRequest from "./postCreateRequest";
 
 
@@ -23,7 +24,7 @@ async function postCreateProduct(requesterObject, productObject) {
 
     try {
         // debugger
-        const response = await fetch('https://one-heart-api-dev.azurewebsites.net/api/product', requestOptions);
+        const response = await fetch(BASE_URL + 'api/product', requestOptions);
 
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;

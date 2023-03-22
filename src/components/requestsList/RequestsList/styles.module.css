@@ -15,7 +15,11 @@
 }
 
 .requests_list_actions_container {
-    @apply flex items-center justify-between w-full p-[12px] border-2 mb-6 mt-11
+    @apply w-full p-[12px] border-2 mb-6 mt-11
+}
+
+.requests_list_actions_top_container {
+    @apply flex items-center justify-between
 }
 
 .requests_list_actions_left_container {
@@ -24,6 +28,10 @@
 
 .requests_list_actions_right_container {
     @apply flex w-[32%]
+}
+
+.requests_list_actions_bottom_container {
+    @apply flex items-center justify-end mt-[10px] mr-[10px]
 }
 
 .requests_list_excel_container {

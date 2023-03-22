@@ -3,6 +3,8 @@ export const translationsEn =
     HeaderTitle: "Our Hearts and Supports are in the Earthquake Zone",
     HeaderDescription: "From the first moment of the great natural disaster that our country has experienced, our hearts beat with our friends and relatives who were affected by the disaster.<br><br>Through our one Heart Solidarity Platform, you can help our loved ones to rebuild their lives and support their needs.    <br><br>You can share all your questions, suggestions and feedback regarding the platform and process by contacting the <strong>People Experience Team (pxp-solutions-TR@bs.nttdata.com)</strong>.",
     Help: "Help",
+    Date: "Date",
+    Filter: "Fılter",
     Filters: "Filters",
     RequestsList: "Requests List",
     RequestDetail: "Request Detail",
@@ -63,5 +65,8 @@ export const translationsEn =
     VOUCHER: "Voucher",
     Sector: "Sector",
     ELECTRONIC: "Electronic",
-    PleaseSelect: "Please select."
+    PleaseSelect: "Please select.",
+    Cancel: "Cancel",
+    Apply: "Apply",
+    ClearFilter: "Clear Filter",
 }

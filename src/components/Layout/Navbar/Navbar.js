@@ -115,7 +115,7 @@ export default function Navbar({
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
-            width="18%"
+            width="242px"
             // height="500px"
             style={{ position: "fixed" }}
             marginTop="50px"
