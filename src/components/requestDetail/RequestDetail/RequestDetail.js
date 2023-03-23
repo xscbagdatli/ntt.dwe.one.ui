@@ -1,12 +1,7 @@
-import { Box, Typography, Container, Button, TextField, InputAdornment, FormControl } from '@mui/material';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { Box } from '@mui/material';
 import RequestDetailCss from "./styles.module.css"
-import IconButton from '@mui/material/IconButton';
-import ExcelButton from '../../../assets/images/excel-button.png';
 import RequestDetailTable from '../RequestDetailTable/RequestDetailTable';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useEffect, useState } from 'react';
-import i18n from "i18next";
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import fetchRequirementItem from '../../../api/requestDetail/fetchRequirementItem';
@@ -31,7 +26,7 @@ function RequestDetail() {
 
   useEffect(() => {
     if (requirements.length > 0 && selectedRequestIndex !== null) {
-      fetchRequirementItem(selectedRequestIndex)
+      fetchRequirementItem(requirements?.[selectedRequestIndex])
     }
   }, [requirements, selectedRequestIndex])
 

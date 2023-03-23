@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +6,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Chip, LinearProgress, TableFooter, TablePagination, Typography } from '@mui/material';
 import {
   tableHeadCategories
 } from "../provided-requests-data.js"
@@ -62,16 +60,16 @@ export default function ProvidedRequestsTable({
         <TableBody>
           <StyledTableRow>
             <StyledTableCell align="right">{formatDate(requirementWithId?.plannedDeliveryDate)}</StyledTableCell>
-            <StyledTableCell align="right">{t(item?.product.productGroup.code)}</StyledTableCell>
-            <StyledTableCell align="right">{item?.product.unitPrice + " " + item?.product.currency.code}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.product?.productGroup?.code)}</StyledTableCell>
+            <StyledTableCell align="right">{item?.product?.unitPrice + " " + item?.product?.currency?.code}</StyledTableCell>
             <StyledTableCell align="right">{item?.quantity}</StyledTableCell>
-            <StyledTableCell align="right">{t(item?.product.unitOfMeasure.code)}</StyledTableCell>
-            <StyledTableCell align="right">{t(item?.product.productType.code)}</StyledTableCell>
-            <StyledTableCell align="right">{t(item?.splitProfileStatus.code)}</StyledTableCell>
-            <StyledTableCell align="right">{t(requirementWithId?.deliveryType.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.product?.unitOfMeasure?.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.product?.productType?.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(item?.splitProfileStatus?.code)}</StyledTableCell>
+            <StyledTableCell align="right">{t(requirementWithId?.deliveryType?.code)}</StyledTableCell>
             <StyledTableCell align="right"
               style={{ textTransform: "capitalize" }}
-            >{item?.product.businessPartner.name.toLowerCase()}</StyledTableCell>
+            >{item?.product?.businessPartner?.name.toLowerCase()}</StyledTableCell>
             <StyledTableCell align="right">{(item?.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
             <StyledTableCell align="right">{item?.url}</StyledTableCell>
           </StyledTableRow>

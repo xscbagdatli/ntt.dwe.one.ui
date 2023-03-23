@@ -1,30 +1,10 @@
-import { commitments } from "../../redux/providedRequestsSlice";
-import { store } from "../../redux/store";
-import { BASE_URL } from "../../Enums"
+import { commitments as commitmentsAction } from "../../redux/providedRequestsSlice";
+import { COMMITMENT } from '../../apiConfig';
 import fetchRequirements from "../requestsList/fetchRequirements";
+import fetchFunction from "../fetchFunction";
 
-
-async function fetchCommitments() {
-    try {
-        const response = await fetch(BASE_URL + `api/commitment`)
-
-        if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message);
-        }
-        const datas = await response.json();
-        store.dispatch(commitments(datas.result.data))
-
-        let requirementId = datas.result.data[0].requirementId
-        // let requirementItemId = datas.result.data[0].requirementItemId
-
-        fetchRequirements(requirementId)
-
-        return datas.result.data;
-    }
-    catch (error) {
-        return error.message; // 'An error has occurred: 404'
-    };
-
+function fetchCommitments() {
+    // First parameter is endpoint from apiConfig file, second parameter is redux action from its slice, if we need to dispatch more than one action it should be an array of actions, third parameter is requestOptions if we want to make a call except fetch, fourth parameter is if its a chaining api, the next function for api call, fifth parameter is extraProps which we want to pass to next api.
+    fetchFunction(COMMITMENT, commitmentsAction, null, fetchRequirements)
 }
 export default fetchCommitments

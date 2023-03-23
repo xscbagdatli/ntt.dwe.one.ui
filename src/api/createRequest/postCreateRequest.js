@@ -1,10 +1,7 @@
-import { sectors } from "../../redux/commonSlice";
-import { store } from "../../redux/store";
-import { BASE_URL } from "../../Enums"
+import { REQUIREMENT } from '../../apiConfig';
+import fetchFunction from '../fetchFunction';
 
-
-async function postCreateRequest(requesterObject, productObject, newProduct) {
-    debugger
+function postCreateRequest(requesterObject, productObject, newProduct) {
     const bodyToSend = {
         requestName: productObject.productName,
         requestBy: requesterObject.name,
@@ -23,7 +20,7 @@ async function postCreateRequest(requesterObject, productObject, newProduct) {
                 isSpecial: productObject.isSpecialProduct,
                 url: productObject.productUrl,
                 requirementId: 13,
-                productId: newProduct.id,
+                productId: newProduct?.id,
                 splitProfileStatusId: productObject.providingType,
             }
         ]
@@ -35,21 +32,11 @@ async function postCreateRequest(requesterObject, productObject, newProduct) {
         body: JSON.stringify(bodyToSend)
     };
 
-    try {
-        const response = await fetch(BASE_URL + 'api/requirement', requestOptions);
-        debugger
-        if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message);
-        }
-        const reqs = await response.json();
-        // store.dispatch(sectors(reqs.result.data))
-        return reqs.result.data;
+    const propsToPass = {
+        requesterObject: requesterObject,
+        productObject: productObject,
     }
-
-    catch (error) {
-        return error.message; // 'An error has occurred: 404'
-    };
+    fetchFunction(REQUIREMENT, null, requestOptions, propsToPass)
 
 }
 export default postCreateRequest

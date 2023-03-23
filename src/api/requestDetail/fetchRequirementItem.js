@@ -1,25 +1,18 @@
 import { selectedRequestItem } from "../../redux/requestDetailSlice";
 import { providedRequestItem } from "../../redux/providedRequestsSlice";
-import { store } from "../../redux/store";
-import { BASE_URL } from "../../Enums"
+import { REQUIREMENT_ITEM_WITH_REQUIREMENT_ID } from '../../apiConfig';
+import fetchFunction from "../fetchFunction";
 
+function fetchRequirementItem(data) {
+    let requirementId = data?.id
 
-async function fetchRequirementItem(requirementId) {
-    try {
-        const response = requirementId && await fetch(`https://one-heart-api-dev.azurewebsites.net/api/requirement-item?RequirementId=${requirementId}`);
+    // If we need to store data at more than one place at redux, we should send an array with actions of related places at redux.
+    const actionsArray = [selectedRequestItem, providedRequestItem]
 
-        if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message);
-        }
-        const requests = await response.json();
+    let apiEndpointWithQuery = REQUIREMENT_ITEM_WITH_REQUIREMENT_ID + (requirementId ? requirementId : "")
 
-        store.dispatch(selectedRequestItem(requests.result.data))
-        store.dispatch(providedRequestItem(requests.result.data))
-        return requests.result.data;
+    if (requirementId) {
+        fetchFunction(apiEndpointWithQuery, actionsArray)
     }
-    catch (error) {
-        return error.message; // 'An error has occurred: 404'
-    };
 }
 export default fetchRequirementItem

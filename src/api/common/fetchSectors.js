@@ -1,24 +1,9 @@
 import { sectors } from "../../redux/commonSlice";
-import { store } from "../../redux/store";
-import { BASE_URL } from "../../Enums"
-
+import { SECTOR } from '../../apiConfig';
+import fetchFunction from "../fetchFunction";
 
 async function fetchSectors() {
-    try {
-        const response = await fetch(BASE_URL + 'api/sector');
-
-        if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message);
-        }
-        const secs = await response.json();
-        store.dispatch(sectors(secs.result.data))
-        return secs.result.data;
-    }
-
-    catch (error) {
-        return error.message; // 'An error has occurred: 404'
-    };
-
+    // First parameter is endpoint from apiConfig file, second parameter is redux action from its slice, if we need to dispatch more than one action it should be an array of actions, third parameter is requestOptions if we want to make a call except fetch, fourth parameter is if its a chaining api, the next function for api call, fifth parameter is extraProps which we want to pass to next api.
+    fetchFunction(SECTOR, sectors)
 }
 export default fetchSectors

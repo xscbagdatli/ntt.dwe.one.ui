@@ -1,24 +1,10 @@
 import { deliveryTypes } from "../../redux/commonSlice";
-import { store } from "../../redux/store";
-import { BASE_URL } from "../../Enums"
+import { DELIVERY_TYPE } from '../../apiConfig';
+import fetchFunction from "../fetchFunction";
 
 
 async function fetchDeliveryTypes() {
-    try {
-
-        const response = await fetch(BASE_URL + 'api/delivery-type');
-
-        if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message);
-        }
-        const types = await response.json();
-        store.dispatch(deliveryTypes(types.result.data))
-        return types.result.data;
-    }
-    catch (error) {
-        return error.message; // 'An error has occurred: 404'
-    };
-
+    // First parameter is endpoint from apiConfig file, second parameter is redux action from its slice, if we need to dispatch more than one action it should be an array of actions, third parameter is requestOptions if we want to make a call except fetch, fourth parameter is if its a chaining api, the next function for api call, fifth parameter is extraProps which we want to pass to next api.
+    fetchFunction(DELIVERY_TYPE, deliveryTypes)
 }
 export default fetchDeliveryTypes
