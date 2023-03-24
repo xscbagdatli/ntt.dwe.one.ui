@@ -4,7 +4,7 @@ const initialState = {
   requirements: [],
   filteredRequirementsForTable: [],
   requirementWithId: [],
-  selectedRequestIndex: null,
+  selectedRequestId: null,
 };
 
 export const requestsListSlice = createSlice({
@@ -21,8 +21,8 @@ export const requestsListSlice = createSlice({
     requirementWithId: (state, action) => {
       state.requirementWithId = action.payload;
     },
-    selectedRequestIndex: (state, action) => {
-      state.selectedRequestIndex = action.payload;
+    selectedRequestId: (state, action) => {
+      state.selectedRequestId = action.payload;
     },
   },
 });
@@ -32,7 +32,7 @@ export const {
   requirements,
   filteredRequirementsForTable,
   requirementWithId,
-  selectedRequestIndex
+  selectedRequestId
 } = requestsListSlice.actions;
 
 export default requestsListSlice.reducer;

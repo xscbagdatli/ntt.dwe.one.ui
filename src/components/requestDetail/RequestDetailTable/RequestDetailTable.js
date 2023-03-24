@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -43,12 +43,12 @@ export default function RequestDetailTable() {
   const { t } = useTranslation()
 
   const requirements = useSelector((state) => state.requestsList.requirements)
-  const selectedRequestIndex = useSelector((state) => state.requestsList.selectedRequestIndex)
+  const selectedRequestId = useSelector((state) => state.requestsList.selectedRequestId)
 
   const selectedRequestItem = useSelector((state) => state.requestDetail.selectedRequestItem)
 
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(2)
+  const [rowsPerPage] = useState(2)
 
   const handleChangePage = (newPage) => {
     setPage(newPage);
@@ -94,12 +94,21 @@ export default function RequestDetailTable() {
               <StyledTableCell align="right">{t(row?.product.unitOfMeasure.code)}</StyledTableCell>
               <StyledTableCell align="right">{t(row?.product.productType.code)}</StyledTableCell>
               <StyledTableCell align="right">{t(row?.splitProfileStatus.code)}</StyledTableCell>
-              <StyledTableCell align="right">{t(requirements?.[selectedRequestIndex]?.deliveryType.code)}</StyledTableCell>
+              <StyledTableCell align="right">{t(requirements?.[selectedRequestId]?.deliveryType.code)}</StyledTableCell>
               <StyledTableCell align="right"
                 style={{ textTransform: "capitalize" }}
               >{row?.product.businessPartner.name.toLowerCase()}</StyledTableCell>
               <StyledTableCell align="right">{(row?.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
-              <StyledTableCell align="right">{row?.url}</StyledTableCell>
+              <StyledTableCell align="right">
+                {
+                  row?.url ?
+                    <Link href={row?.url}>
+                      <LinkIcon />
+                    </Link>
+                    :
+                    "-"
+                }
+              </StyledTableCell>
               <StyledTableCell align="right">{<LinearProgressWithLabel value={row?.remainderQuantity / row?.quantity * 100} />}</StyledTableCell>
             </StyledTableRow>
           ))}

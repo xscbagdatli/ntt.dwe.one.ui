@@ -10,7 +10,7 @@ function RequestDetail() {
   const { t } = useTranslation()
 
   const requirements = useSelector((state) => state.requestsList.requirements)
-  const selectedRequestIndex = useSelector((state) => state.requestsList.selectedRequestIndex)
+  const selectedRequestId = useSelector((state) => state.requestsList.selectedRequestId)
 
   const [requestNo, setRequestNo] = useState(0)
   const [requestTitle, setRequestTitle] = useState("")
@@ -18,17 +18,16 @@ function RequestDetail() {
   const [responsibleEmail, setResponsibleEmail] = useState("")
 
   useEffect(() => {
-    setRequestNo(requirements?.[selectedRequestIndex]?.id)
-    setRequestTitle(requirements?.[selectedRequestIndex]?.requestName)
-    setResponsibleName(requirements?.[selectedRequestIndex]?.responsibleHrbpName)
-    setResponsibleEmail(requirements?.[selectedRequestIndex]?.responsibleHrbpEmail)
-  }, [requirements, selectedRequestIndex])
+    let sendDataToFetch = requirements?.filter(req => req.id === selectedRequestId)
+    if (requirements.length > 0 && selectedRequestId !== null && sendDataToFetch?.length > 0) {
+      setRequestNo(sendDataToFetch?.[0]?.id)
+      setRequestTitle(sendDataToFetch?.[0]?.requestName)
+      setResponsibleName(sendDataToFetch?.[0]?.responsibleHrbpName)
+      setResponsibleEmail(sendDataToFetch?.[0]?.responsibleHrbpEmail)
 
-  useEffect(() => {
-    if (requirements.length > 0 && selectedRequestIndex !== null) {
-      fetchRequirementItem(requirements?.[selectedRequestIndex])
+      fetchRequirementItem(sendDataToFetch?.[0])
     }
-  }, [requirements, selectedRequestIndex])
+  }, [requirements, selectedRequestId])
 
   return (
     <Box className={RequestDetailCss.request_detail_container}>
@@ -40,7 +39,7 @@ function RequestDetail() {
       <Box className={RequestDetailCss.request_detail_dashboard_container}>
         <Box className={RequestDetailCss.request_detail_dashboard_column}>
           <Box className={RequestDetailCss.request_detail_dashboard_title}>{t("RequestNo")}</Box>
-          <Box className={RequestDetailCss.request_detail_dashboard_value}>{`#${requestNo}`}</Box>
+          <Box className={RequestDetailCss.request_detail_dashboard_value}>{`#${requestNo ? requestNo : ""}`}</Box>
         </Box>
         <Box className={RequestDetailCss.request_detail_dashboard_column}>
           <Box className={RequestDetailCss.request_detail_dashboard_title}>{t("RequestTitle")}</Box>

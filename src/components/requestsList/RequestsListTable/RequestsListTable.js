@@ -12,7 +12,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { store } from '../../../redux/store';
-import { selectedRequestIndex } from '../../../redux/requestsListSlice';
+import { selectedRequestId } from '../../../redux/requestsListSlice';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../../helpers/formatDate';
 // import fetchRequirementItem from '../../../api/requestDetail/fetchRequirementItem';
@@ -99,7 +99,7 @@ export default function RequestsListTable({
   };
 
   const handleSelectedRequest = (requestId) => {
-    store.dispatch(selectedRequestIndex(requestId))
+    store.dispatch(selectedRequestId(requestId))
   };
 
   return (

@@ -14,12 +14,13 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { formatDate } from '../../../helpers/formatDate.js';
-import { Box, FormControl, TextField } from '@mui/material';
+import { Box, FormControl, Link, TextField } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButtonComponent from '../../common/IconButtonComponent.js';
+import LinkIcon from '@mui/icons-material/Link';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -121,7 +122,16 @@ export default function ProvidedRequestsTable({
                 style={{ textTransform: "capitalize" }}
               >{item?.product?.businessPartner?.name.toLowerCase()}</StyledTableCell>
               <StyledTableCell align="right">{(item?.isSpecial ? t("Yes") : t("No"))}</StyledTableCell>
-              <StyledTableCell align="right">{item?.url}</StyledTableCell>
+              <StyledTableCell align="right">
+                {
+                  item?.url ?
+                    <Link href={item?.url}>
+                      <LinkIcon />
+                    </Link>
+                    :
+                    "-"
+                }
+              </StyledTableCell>
             </StyledTableRow>
             {/* 
           {emptyRows > 0 && (
