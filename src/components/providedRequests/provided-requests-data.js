@@ -40,55 +40,31 @@ export const requesterInputSpecs = [
 export const productInputSpecs = [
     {
         id: 0,
-        title: "Name",
+        title: "CargoCompany",
         type: "input",
         width: "250px"
     },
     {
         id: 1,
-        title: "Quantity",
+        title: "CargoTrackingNo",
         type: "input",
         width: "250px"
     },
     {
         id: 2,
-        title: "Price",
+        title: "CargoUrl",
         type: "input",
         width: "250px"
     },
     {
         id: 3,
-        title: "PriceUnit",
-        type: "select",
+        title: "ProductQuantity",
+        type: "input",
         width: "250px"
     },
     {
         id: 4,
-        title: "MeasureUnit",
-        type: "select",
-        width: "250px"
-    },
-    {
-        id: 5,
-        title: "PurchaseType",
-        type: "select",
-        width: "250px"
-    },
-    {
-        id: 6,
-        title: "ProvidingType",
-        type: "select",
-        width: "250px"
-    },
-    {
-        id: 7,
-        title: "DeliveryType",
-        type: "select",
-        width: "250px"
-    },
-    {
-        id: 8,
-        title: "Url",
+        title: "Adress",
         type: "input",
         width: "250px"
     },

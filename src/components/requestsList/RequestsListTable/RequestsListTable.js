@@ -61,10 +61,11 @@ export default function RequestsListTable({
   const { t } = useTranslation()
 
   const requirements = useSelector((state) => state.requestsList.requirements)
+  const filteredRequirementsForTable = useSelector((state) => state.requestsList.filteredRequirementsForTable)
 
   const [requirementsForTable, setRequirementsForTable] = useState(null)
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [rowsPerPage] = useState(5)
 
   useEffect(() => {
     if (filteredRequirements) {
@@ -104,7 +105,7 @@ export default function RequestsListTable({
   return (
     <>
       {
-        requirementsForTable && requirementsForTable?.length === 0 ?
+        filteredRequirementsForTable && filteredRequirementsForTable?.length === 0 ?
           "Filtreye uygun sonuç bulunamadı."
           :
           <TableContainer component={Paper} sx={{ maxHeight: 440 }}>

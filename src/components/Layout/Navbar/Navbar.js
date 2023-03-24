@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import NavbarCss from './styles.module.css';
+// import NavbarCss from './styles.module.css';
 import { BsCheck2Square, BsPlusLg, BsListUl } from "react-icons/bs"
 import { CgHomeAlt } from "react-icons/cg"
-import { BiHelpCircle } from "react-icons/bi"
+// import { BiHelpCircle } from "react-icons/bi"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Box } from '@mui/system';
-import { Avatar, Divider, Link, Stack, Typography } from '@mui/material';
+// import {Avatar, Divider, Link, Stack, Typography} from '@mui/material';
 import { Link as RouteLink, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -14,34 +14,12 @@ import {
     useNavigate,
 } from 'react-router-dom';
 
-export default function Navbar({
-
-}) {
+export default function Navbar() {
     const { t } = useTranslation()
     const navigate = useNavigate()
     let location = useLocation();
 
     const [value, setValue] = useState(0);
-
-    function TabPanel(props) {
-        const { children, value, index, ...other } = props;
-
-        return (
-            <div
-                role="tabpanel"
-                hidden={value !== index}
-                id={`vertical-tabpanel-${index}`}
-                aria-labelledby={`vertical-tab-${index}`}
-                {...other}
-            >
-                {value === index && (
-                    <Box sx={{ p: 3 }}>
-                        <Typography>{children}</Typography>
-                    </Box>
-                )}
-            </div>
-        );
-    }
 
     const menu = [
         {
@@ -78,14 +56,14 @@ export default function Navbar({
         }
     }
 
-    const bottomTextStyle = () => {
-        return {
-            width: "230px",
-            overflowWrap: "break-word",
-            color: "#9DA6BA",
-            fontSize: "14px"
-        }
-    }
+    // const bottomTextStyle = () => {
+    //     return {
+    //         width: "230px",
+    //         overflowWrap: "break-word",
+    //         color: "#9DA6BA",
+    //         fontSize: "14px"
+    //     }
+    // }
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

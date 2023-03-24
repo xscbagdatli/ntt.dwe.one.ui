@@ -1,9 +1,8 @@
 import { Button, TextField, InputAdornment, Select, MenuItem, FormControl, InputLabel, Fab } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { filteredRequirementsForTable } from "../../../redux/requestsListSlice";
 // import Button from '@mui/joy/Button';
 import JoyButton from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
-import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import FilterListIcon from '@mui/icons-material/FilterList';
@@ -18,8 +17,7 @@ import { React, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Box } from '@mui/system';
-import { extendTheme } from '@mui/joy';
-import { red } from '@mui/material/colors';
+import { store } from '../../../redux/store';
 
 function RequestsList() {
   const { t } = useTranslation()
@@ -116,15 +114,9 @@ function RequestsList() {
     }
   }, [filterStartDate, filterEndDate, filterStatus])
 
-
-  const theme = createTheme({
-    palette: {
-      warning: {
-        // This is green.A700 as hex.
-        main: '#b42318',
-      },
-    },
-  });
+  useEffect(() => {
+    store.dispatch(filteredRequirementsForTable(filteredRequirements))
+  }, [filteredRequirements])
 
   return (
     <div className={RequestsListCss.requests_list_container}>

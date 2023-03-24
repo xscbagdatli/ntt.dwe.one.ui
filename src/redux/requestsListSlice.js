@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   requirements: [],
+  filteredRequirementsForTable: [],
   requirementWithId: [],
   selectedRequestIndex: null,
 };
@@ -13,6 +14,9 @@ export const requestsListSlice = createSlice({
   reducers: {
     requirements: (state, action) => {
       state.requirements = action.payload;
+    },
+    filteredRequirementsForTable: (state, action) => {
+      state.filteredRequirementsForTable = action.payload;
     },
     requirementWithId: (state, action) => {
       state.requirementWithId = action.payload;
@@ -26,6 +30,7 @@ export const requestsListSlice = createSlice({
 
 export const {
   requirements,
+  filteredRequirementsForTable,
   requirementWithId,
   selectedRequestIndex
 } = requestsListSlice.actions;

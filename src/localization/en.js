@@ -69,4 +69,8 @@ export const translationsEn =
     Cancel: "Cancel",
     Apply: "Apply",
     ClearFilter: "Clear Filter",
+    CargoCompany: "Cargo Company",
+    CargoTrackingNo: "Cargo Tracking No",
+    CargoUrl: "Cargo Url"
+
 }

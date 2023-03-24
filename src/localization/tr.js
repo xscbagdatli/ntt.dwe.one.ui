@@ -69,4 +69,8 @@ export const translationsTr =
     Cancel: "İptal",
     Apply: "Uygula",
     ClearFilter: "Filtreyi Temizle",
+    CargoCompany: "Kargo Firması",
+    CargoTrackingNo: "Kargo Takip No",
+    CargoUrl: "Kargo Url"
+
 }
